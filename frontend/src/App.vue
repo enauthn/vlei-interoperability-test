@@ -11,9 +11,12 @@
   </div>
 
   <!-- Main Accordion -->
-  <div class="AccDiv">
+  <div class="accordion-wrapper">
     <Accordion :sections="sections" />
-  </div>
+  </div>  
+
+
+
 </template>
 
 <script setup lang="ts">
@@ -21,32 +24,40 @@ import PasscodeInstanceUrlForm from './components/PasscodeInstanceUrlForm.vue';
 import ProgressBox from './components/ProgressBox.vue';
 import Accordion from './components/Accordion.vue';
 
-const sections = [
+import { Section } from './types/Section';
+
+
+const sections: Section[] = [
   {
     name: "Establishment",
     completed: 0,
-    total: 3,
     subsections: ["GEDA init", "OOBI Resolution", "Challenge", "dsdas"],
+    total: 0,
   },
   {
     name: "Issuance",
     completed: 0,
-    total: 2,
     subsections: ["Sign Document", "Verify Identity"],
+    total: 0,
   },
   {
     name: "Rotation",
     completed: 0,
-    total: 3,
     subsections: ["Update Record", "Confirm Rotation", "Notify Parties"],
+    total: 0,
   },
   {
     name: "Revocation",
     completed: 0,
-    total: 1,
     subsections: ["Revoke Access"],
+    total: 0,
   },
 ];
+
+// Dynamically update the total for each section based on the number of subsections
+sections.forEach(section => {
+  section.total = section.subsections.length;
+});
 </script>
 
 <style scoped>
