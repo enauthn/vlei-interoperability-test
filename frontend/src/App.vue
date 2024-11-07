@@ -1,22 +1,14 @@
 <template>
   <h1>Automated Interoperability Testing Web Application</h1>
 
-  <!-- Wrapper div to align form and progress boxes vertically -->
   <div class="form-progress-wrapper">
-    <!-- Passcode and Instance URL Section -->
     <PasscodeInstanceUrlForm />
-
-    <!-- Progress Box Section -->
     <ProgressBox :sections="sections" />
   </div>
 
-  <!-- Main Accordion -->
   <div class="accordion-wrapper">
     <Accordion :sections="sections" />
-  </div>  
-
-
-
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -26,48 +18,99 @@ import Accordion from './components/Accordion.vue';
 
 import { Section } from './types/Section';
 
-
 const sections: Section[] = [
   {
     name: "Establishment",
     completed: 0,
-    subsections: ["GEDA init", "OOBI Resolution", "Challenge", "dsdas"],
-    total: 0,
+    subsections: [
+      {
+        name: "GEDA init",
+        subitem: [
+          { item: "Step 1", inputValue: "", button: "true" },
+          { item: "Step 2", inputValue: "", button: "false" }
+        ]
+      },
+      {
+        name: "OOBI Resolution",
+        subitem: [
+          { item: "Step 1", inputValue: "", button: "true" },
+          { item: "Step 2", inputValue: "", button: "false" }
+        ]
+      },
+      {
+        name: "Challenge",
+        subitem: [
+          { item: "Step 1", inputValue: "", button: "true" },
+          { item: "Step 2", inputValue: "", button: "false" }
+        ]
+      }
+    ]
   },
   {
     name: "Issuance",
     completed: 0,
-    subsections: ["Sign Document", "Verify Identity"],
-    total: 0,
+    subsections: [
+      {
+        name: "Sign Document",
+        subitem: [
+          { item: "Step 1", inputValue: "", button: "false" }
+        ]
+      },
+      {
+        name: "Verify Identity",
+        subitem: [
+          { item: "Step 1", inputValue: "", button: "true" }
+        ]
+      }
+    ]
   },
   {
     name: "Rotation",
     completed: 0,
-    subsections: ["Update Record", "Confirm Rotation", "Notify Parties"],
-    total: 0,
+    subsections: [
+      {
+        name: "Update Record",
+        subitem: [
+          { item: "Step 1", inputValue: "", button: "true" }
+        ]
+      },
+      {
+        name: "Confirm Rotation",
+        subitem: [
+          { item: "Step 1", inputValue: "", button: "false" }
+        ]
+      },
+      {
+        name: "Notify Parties",
+        subitem: [
+          { item: "Step 1", inputValue: "", button: "true" }
+        ]
+      }
+    ]
   },
   {
     name: "Revocation",
     completed: 0,
-    subsections: ["Revoke Access"],
-    total: 0,
-  },
+    subsections: [
+      {
+        name: "Revoke Access",
+        subitem: [
+          { item: "Step 1", inputValue: "", button: "true" }
+        ]
+      }
+    ]
+  }
 ];
 
-// Dynamically update the total for each section based on the number of subsections
-sections.forEach(section => {
-  section.total = section.subsections.length;
-});
 </script>
 
 <style scoped>
-/* Add any necessary styles for the wrapper if needed */
 .form-progress-wrapper {
   display: flex;
-  flex-direction: row; /* Arrange form and progress boxes in a row */
-  gap: 2rem; /* Add space between form and progress box */
+  flex-direction: row;
+  gap: 2rem;
   max-width: 1200px;
   margin: 20px auto;
-  align-items: flex-start; /* Align items to the start of the container */
+  align-items: flex-start;
 }
 </style>

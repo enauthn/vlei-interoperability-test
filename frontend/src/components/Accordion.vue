@@ -1,15 +1,12 @@
 <template>
   <div class="accordion-wrapper">
     <div v-for="(section, index) in sections" :key="index" class="accordion-section">
-      <div 
-        class="accordion-header" 
-        @click="toggleSection(index)"
-      >
-        <!-- Display the section name with completed/total count -->
-        <span>{{ section.name }} ({{ section.completed }}/{{ section.total }})</span>
+      <div class="accordion-header" @click="toggleSection(index)">
+        <!-- Display the section index (number) and section name with completed/total count -->
+        <span>{{ index + 1 }}. {{ section.name }} ({{ section.completed }}/{{ section.subsections.length }})</span>
         <span :class="{ 'rotate-180': isActive(index) }">▼</span>
       </div>
-      
+
       <!-- Transition wrapper for accordion-content -->
       <Transition
         name="accordion"
@@ -20,7 +17,10 @@
       >
         <div v-if="isActive(index)" class="accordion-content">
           <ul class="mini-process-list">
-            <li v-for="(process, i) in section.subsections" :key="i">{{ i + 1 }}. {{ process }}</li>
+            <li v-for="(subsection, i) in section.subsections" :key="i">
+              <!-- Pass the computed parentNumber as a string like "1.1", "1.2" etc. -->
+              <SubSection :parentNumber="`${index + 1}.${i + 1}`" :label="subsection.name" :subitems="subsection.subitem" />
+            </li>
           </ul>
         </div>
       </Transition>
@@ -28,18 +28,12 @@
   </div>
 </template>
 
+
 <script setup lang="ts">
 import { ref, defineProps } from 'vue';
+import SubSection from './SubSection.vue';
+import { Section } from '../types/Section';
 
-// Define the interface for a section
-interface Section {
-  name: string;
-  completed: number;
-  total: number;
-  subsections: string[];
-}
-
-// Define the props with type checking
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{ sections: Section[] }>();
 
@@ -60,28 +54,27 @@ const toggleSection = (index: number) => {
 
 // Transition Hooks
 const beforeEnter = (el: Element) => {
-  const element = el as HTMLElement; // Cast to HTMLElement
+  const element = el as HTMLElement;
   element.style.height = '0';
   element.style.overflow = 'hidden';
 };
 
 const enter = (el: Element) => {
-  const element = el as HTMLElement; // Cast to HTMLElement
+  const element = el as HTMLElement;
   element.style.transition = 'height 0.3s ease-out';
-  element.style.height = `${element.scrollHeight}px`;
+  element.style.height = `${element.scrollHeight}px `;
 };
 
 const beforeLeave = (el: Element) => {
-  const element = el as HTMLElement; // Cast to HTMLElement
+  const element = el as HTMLElement;
   element.style.transition = 'height 0.3s ease-in';
-  element.style.height = `${element.scrollHeight}px`; // Start from the current height
+  element.style.height = `${element.scrollHeight}px`;
 };
 
 const leave = (el: Element) => {
-  const element = el as HTMLElement; // Cast to HTMLElement
+  const element = el as HTMLElement;
   element.style.height = '0';
 };
-
 </script>
 
 <style scoped>
@@ -107,7 +100,6 @@ const leave = (el: Element) => {
 .accordion-content {
   padding: 1rem;
   background-color: #f9f9f9;
-  overflow: hidden;
 }
 
 .mini-process-list {
@@ -121,68 +113,5 @@ const leave = (el: Element) => {
 
 .rotate-180 {
   transform: rotate(180deg);
-}
-
-.accordion {
-  max-width: 400px;
-  font-family: Lato;
-  margin-bottom: 20px;
-  background-color: #ec5366;
-  border-radius: 6px;
-}
-
-.accordion .header {
-  height: 40px;
-  line-height: 40px;
-  padding: 0 40px 0 8px;
-  position: relative;
-  color: #fff;
-  cursor: pointer;
-}
-
-.accordion .header-icon {
-  position: absolute;
-  top: 5px;
-  right: 8px;
-  transform: rotate(0deg);
-  transition-duration: 0.3s;
-}
-
-.accordion .body {
-  overflow: hidden;
-  background-color: #fff;
-  border: 10px solid #ec5366;
-  border-top: 0;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-  transition: 150ms ease-out;
-}
-
-.accordion .body-inner {
-  padding: 8px;
-  overflow-wrap: break-word;
-}
-
-.accordion .header-icon.rotate {
-  transform: rotate(180deg);
-  transition-duration: 0.3s;
-}
-
-.accordion.purple {
-  background-color: #8c618d;
-}
-
-.accordion.purple .body {
-  border-color: #8c618d;
-}
-
-.accordion .accordion-fade-enter-active,
-.accordion .accordion-fade-leave-active {
-  transition: height 0.3s ease-in-out;
-}
-
-.accordion .accordion-fade-enter, .accordion .accordion-fade-leave-to {
-  height: 0;
-  opacity: 0;
 }
 </style>
