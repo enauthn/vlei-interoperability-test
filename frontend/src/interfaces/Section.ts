@@ -9,8 +9,6 @@ interface Subsection {
   subitem: Subitem[];
 }
 
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export interface Section {
   name: string;
   completed: number;

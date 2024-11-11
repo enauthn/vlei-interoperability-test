@@ -4,12 +4,12 @@
     <div class="progress-box-container">
       <div
         v-for="(section, index) in sections"
-        :key="index"
+        :key="section.name"
         :class="[
           'progress-box-item',
           section.completed === 0
             ? 'not-started'
-            : section.completed > 0 && section.completed < section.total
+            : section.completed < section.subsections.length
             ? 'in-progress'
             : 'completed',
         ]"
@@ -21,20 +21,29 @@
 </template>
 
 <script setup lang="ts">
+import { watch, defineProps } from "vue";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   sections: {
     type: Array,
     required: true,
   },
 });
+
+// Watch the `sections` prop to detect changes in the `completed` values.
+watch(
+  () => props.sections.map(section => section.completed),
+  (newValues, oldValues) => {
+    console.log("Progress updated:", newValues); // Debugging line
+  },
+  { deep: true } // Deep watch to ensure nested properties are observed
+);
 </script>
 
 <style scoped>
 .progress-box {
   width: fit-content;
-  border: 2px solid black; /* Black border */
+  border: 2px solid black;
   border-radius: 10px;
   padding: 15px;
   display: flex;
@@ -49,26 +58,24 @@ const props = defineProps({
 
 .progress-box-container {
   display: flex;
-  justify-content: space-between; /* Space boxes evenly */
+  justify-content: space-between;
   gap: 10px;
 }
 
 .progress-box-item {
-  width: 50px; /* Set width and height to form a square */
+  width: 50px;
   height: 50px;
-  border-radius: 6px; /* Rounded corners */
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   font-size: 16px;
-  color: black; /* Text color */
-  position: relative; /* Position for text shadow */
+  color: black;
 }
 
-/* Square color states */
 .progress-box-item.not-started {
-  background-color: grey;
+  background-color: rgb(185, 180, 180);
 }
 
 .progress-box-item.in-progress {
@@ -76,10 +83,9 @@ const props = defineProps({
 }
 
 .progress-box-item.completed {
-  background-color: green;
+  background-color: rgb(3, 183, 3);
 }
 
-/* Text inside the box */
 .box-text {
   font-size: 18px;
   font-weight: bold;

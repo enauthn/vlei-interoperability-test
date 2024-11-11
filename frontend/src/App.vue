@@ -3,11 +3,11 @@
 
   <div class="form-progress-wrapper">
     <PasscodeInstanceUrlForm />
-    <ProgressBox :sections="sections" />
+    <ProgressBox :sections="currentState" />
   </div>
 
   <div class="accordion-wrapper">
-    <Accordion :sections="sections" />
+    <Accordion :sections="currentState" />
   </div>
 </template>
 
@@ -16,9 +16,11 @@ import PasscodeInstanceUrlForm from './components/PasscodeInstanceUrlForm.vue';
 import ProgressBox from './components/ProgressBox.vue';
 import Accordion from './components/Accordion.vue';
 
-import { Section } from './types/Section';
+import { Section } from './interfaces/Section';
+import { ref } from 'vue';
 
-const sections: Section[] = [
+
+const currentState = ref<Section[]>([
   {
     name: "Establishment",
     completed: 0,
@@ -26,22 +28,29 @@ const sections: Section[] = [
       {
         name: "GEDA init",
         subitem: [
-          { item: "Step 1", inputValue: "", button: "true" },
-          { item: "Step 2", inputValue: "", button: "false" }
+          { item: "Step 1", inputValue: "", button: "false"},
+          { item: "Step 2", inputValue: "", button: "true" }
+        ]
+      },
+      {
+        name: "GEDA init",
+        subitem: [
+          { item: "Step 1", inputValue: "", button: "false"},
+          { item: "Step 2", inputValue: "", button: "true" }
         ]
       },
       {
         name: "OOBI Resolution",
         subitem: [
           { item: "Step 1", inputValue: "", button: "true" },
-          { item: "Step 2", inputValue: "", button: "false" }
+          { item: "Step 2", inputValue: "", button: "false"}
         ]
       },
       {
         name: "Challenge",
         subitem: [
           { item: "Step 1", inputValue: "", button: "true" },
-          { item: "Step 2", inputValue: "", button: "false" }
+          { item: "Step 2", inputValue: "", button: "false"}
         ]
       }
     ]
@@ -53,7 +62,7 @@ const sections: Section[] = [
       {
         name: "Sign Document",
         subitem: [
-          { item: "Step 1", inputValue: "", button: "false" }
+          { item: "Step 1", inputValue: "", button: "false"}
         ]
       },
       {
@@ -77,7 +86,7 @@ const sections: Section[] = [
       {
         name: "Confirm Rotation",
         subitem: [
-          { item: "Step 1", inputValue: "", button: "false" }
+          { item: "Step 1", inputValue: "", button: "false"}
         ]
       },
       {
@@ -100,8 +109,7 @@ const sections: Section[] = [
       }
     ]
   }
-];
-
+]);
 </script>
 
 <style scoped>
