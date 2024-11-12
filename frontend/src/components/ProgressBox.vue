@@ -5,14 +5,7 @@
       <div
         v-for="(section, index) in sections"
         :key="section.name"
-        :class="[
-          'progress-box-item',
-          section.completed === 0
-            ? 'not-started'
-            : section.completed < section.subsections.length
-            ? 'in-progress'
-            : 'completed',
-        ]"
+        :class="['progress-box-item', sectionStatusClass(section)]"
       >
         <span class="box-text">{{ index + 1 }}</span>
       </div>
@@ -21,23 +14,31 @@
 </template>
 
 <script setup lang="ts">
-import { watch, defineProps } from "vue";
+import { defineProps } from "vue";
+import { Section } from "../interfaces/Section";
 
-const props = defineProps({
-  sections: {
-    type: Array,
-    required: true,
-  },
-});
+// Define props with sections being an array of Section objects
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const props = defineProps<{ sections: Section[] }>();
 
-// Watch the `sections` prop to detect changes in the `completed` values.
-watch(
-  () => props.sections.map(section => section.completed),
-  (newValues, oldValues) => {
-    console.log("Progress updated:", newValues); // Debugging line
-  },
-  { deep: true } // Deep watch to ensure nested properties are observed
-);
+// Function to determine the status class based on completion of Subitems within Subsections
+const sectionStatusClass = (section: Section) => {
+  // Flatten all subitems from subsections and filter for valid subitems
+  const allSubitems = section.subsections.flatMap(subsection => subsection.subitem || []);
+
+  // Check if all subitems have the 'completed' property and if all or some are completed
+  const allCompleted = allSubitems.every(item => item?.completed);
+  const anyCompleted = allSubitems.some(item => item?.completed);
+
+  // Determine the class based on the completion state of subitems
+  if (allCompleted) {
+    return "completed";
+  } else if (anyCompleted) {
+    return "in-progress";
+  } else {
+    return "not-started";
+  }
+};
 </script>
 
 <style scoped>

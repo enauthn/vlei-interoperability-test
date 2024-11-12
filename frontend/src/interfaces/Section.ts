@@ -1,16 +1,23 @@
-interface Subitem {
-  item: string;
-  inputValue: string;
-  button: string; // "true" or "false" to control the button visibility
+export interface Button {
+  text: string;         
+  action?: string;          
 }
 
-interface Subsection {
+export interface Subitem {
+  item: string;         
+  inputValue: string | null;   
+  button?: Button[];    
+  completed: boolean;   
+}
+
+export interface Subsection {
   name: string;
-  subitem: Subitem[];
+  desc: string;         
+  button?: Button[];    
+  subitem: Subitem[];   
 }
 
 export interface Section {
-  name: string;
-  completed: number;
+  name: string;        
   subsections: Subsection[];
 }

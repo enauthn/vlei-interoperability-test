@@ -7,11 +7,9 @@
     >
       <div class="accordion-header" @click="toggleSection(index)">
         <!-- Display the section index (number) and section name with completed/total count -->
-        <span
-          >{{ index + 1 }}. {{ section.name }} ({{ section.completed }}/{{
-            section.subsections.length
-          }})</span
-        >
+        <span>
+          {{ index + 1 }}. {{ section.name }} ({{ calculateCompleted(section) }}/{{ calculateTotal(section) }})
+        </span>
         <span :class="{ 'rotate-180': isActive(index) }">▼</span>
       </div>
 
@@ -22,15 +20,14 @@
         @enter="enter"
         @before-leave="beforeLeave"
         @leave="leave"
-      > 
+      >
         <div v-if="isActive(index)" class="accordion-content">
           <ul class="mini-process-list">
             <li v-for="(subsection, i) in section.subsections" :key="i">
-              <!-- Pass the computed parentNumber as a string like "1.1", "1.2" etc. -->
+              <!-- Pass the entire subsection object -->
               <SubSection
                 :parentNumber="`${index + 1}.${i + 1}`"
-                :label="subsection.name"
-                :subitems="subsection.subitem"
+                :subsection="subsection"
               />
             </li>
           </ul>
@@ -63,6 +60,18 @@ const toggleSection = (index: number) => {
   }
 };
 
+// Calculate completed subsections in a section
+const calculateCompleted = (section: Section) => {
+  return section.subsections.filter(subsection =>
+    (subsection.subitem && subsection.subitem.every(item => item.completed)) // Safe check for subitem
+  ).length;
+};
+
+// Calculate total subsections in a section
+const calculateTotal = (section: Section) => {
+  return section.subsections.length;
+};
+
 // Transition Hooks
 const beforeEnter = (el: Element) => {
   const element = el as HTMLElement;
@@ -73,7 +82,7 @@ const beforeEnter = (el: Element) => {
 const enter = (el: Element) => {
   const element = el as HTMLElement;
   element.style.transition = "height 0.3s ease-out";
-  element.style.height = `${element.scrollHeight}px `;
+  element.style.height = `${element.scrollHeight}px`;
 };
 
 const beforeLeave = (el: Element) => {
