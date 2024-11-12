@@ -1,0 +1,194 @@
+{
+  "Establishment": {
+    "name": "Establishment",
+    "subsections": [
+      {
+        "name": "Initialize GEDA and GIDA",
+        "desc": "Initialize GLEIF External Delegated AID (GEDA) and GLEIF Internal Delegated AID (GIDA) that consist of two internal and two external GLEIF Authorized Representatives (GARs), respectively.",
+        "button": [
+          { "text": "Initialize GLEIF’s AIDs", "action": "init-gleif-aids" }
+        ],
+        "subitems": [
+          {
+            "item": "External GAR 1’s AID",
+            "completed": false,
+            "inputValue": ""
+          },
+          {
+            "item": "External GAR 2’s AID",
+            "completed": false,
+            "inputValue": ""
+          },
+          {
+            "item": "GEDA",
+            "completed": false,
+            "inputValue": ""
+          },
+          {
+            "item": "Internal GAR 1’s AID",
+            "completed": false,
+            "inputValue": ""
+          },
+          {
+            "item": "Internal GAR 2’s AID",
+            "completed": false,
+            "inputValue": ""
+          },
+          {
+            "item": "GIDA",
+            "completed": false,
+            "inputValue": ""
+          }
+        ]
+      },
+      {
+        "name": "Initialize QARs’ AID",
+        "desc": "Your application should create 3 AIDs for QVI Authorized Representatives (QARs) in your QVI application.",
+        "subitems": [
+          {
+            "item": "I confirm that 3 AIDs for the QARs have been created.",
+            "completed": false,
+            "button": [
+              { "text": "Confirm", "action": "confirm-3-aids-created" }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Resolve GLEIF’s OOBIs",
+        "desc": "Generate Out-of-band Introductions (OOBIs) of GARs, GEDA, and GIDA. Your application’s AIDs should resolve these OOBIs.",
+        "button": [
+          { "text": "Generate GLEIF’s OOBIs", "action": "generate-gleif-oobis" }
+        ],
+        "subitems": [
+          {
+            "item": "External GAR 1’s OOBI",
+            "completed": false,
+            "inputValue": ""
+          },
+          {
+            "item": "External GAR 2’s OOBI",
+            "completed": false,
+            "inputValue": ""
+          },
+          {
+            "item": "GEDA’s OOBI",
+            "completed": false,
+            "inputValue": ""
+          },
+          {
+            "item": "Internal GAR 1’s OOBI",
+            "completed": false,
+            "inputValue": ""
+          },
+          {
+            "item": "Internal GAR 2’s OOBI",
+            "completed": false,
+            "inputValue": ""
+          },
+          {
+            "item": "GIDA’s OOBI",
+            "completed": false,
+            "inputValue": ""
+          }
+        ]
+      }
+    ]
+  },
+  "Issuance": {
+    "name": "Issuance",
+    "subsections": [
+      {
+        "name": "Sign Document",
+        "desc": "Description for Sign Document",
+        "subitems": [
+          {
+            "item": "Step 1",
+            "completed": false,
+            "inputValue": "",
+            "button": [
+              { "text": "Start", "action": "start-sign-document-step1" },
+              {
+                "text": "Cancel",
+                "action": "cancel-sign-document-step1",
+                "color": "secondary"
+              }
+            ]
+          }
+        ],
+        "button": [
+          { "text": "Start", "action": "start-sign-document" },
+          {
+            "text": "Cancel",
+            "action": "cancel-sign-document",
+            "color": "secondary"
+          }
+        ]
+      }
+    ]
+  },
+  "Rotation": {
+    "name": "Rotation",
+    "subsections": [
+      {
+        "name": "Sign Document",
+        "desc": "Description for Sign Document",
+        "subitems": [
+          {
+            "item": "Step 1",
+            "completed": false,
+            "inputValue": "",
+            "button": [
+              { "text": "Start", "action": "start-sign-document-step1" },
+              {
+                "text": "Cancel",
+                "action": "cancel-sign-document-step1",
+                "color": "secondary"
+              }
+            ]
+          }
+        ],
+        "button": [
+          { "text": "Start", "action": "start-sign-document" },
+          {
+            "text": "Cancel",
+            "action": "cancel-sign-document",
+            "color": "secondary"
+          }
+        ]
+      }
+    ]
+  },
+  "Revocation": {
+    "name": "Revocation",
+    "subsections": [
+      {
+        "name": "Sign Document",
+        "desc": "Description for Sign Document",
+        "subitems": [
+          {
+            "item": "Step 1",
+            "completed": false,
+            "inputValue": "",
+            "button": [
+              { "text": "Start", "action": "start-sign-document-step1" },
+              {
+                "text": "Cancel",
+                "action": "cancel-sign-document-step1",
+                "color": "secondary"
+              }
+            ]
+          }
+        ],
+        "button": [
+          { "text": "Start", "action": "start-sign-document" },
+          {
+            "text": "Cancel",
+            "action": "cancel-sign-document",
+            "color": "secondary"
+          }
+        ]
+      }
+    ]
+  }
+}

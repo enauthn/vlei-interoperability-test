@@ -1,106 +1,66 @@
 <template>
-  <h1>Automated Interoperability Testing Web Application</h1>
+  <div class="header-wrapper">
+    <h1>vLEI Interoperability Testing Application</h1>
+    <span>
+      This is a web application created for testing interoperability of
+      verifiable Legal Entity Identifier (vLEI) implementations for Qualified
+      vLEI Issuers (QVIs).<br />
+      Candidate QVIs may complete this test before taking dry runs for the QVI
+      qualification with Global Legal Entity Identifier Foundation (GLEIF).
+      <br /><br />
+      The test loosely follows the QVI qualification dry run, and it should be
+      followed step-by-step without any skip.
+    </span>
+  </div>
 
   <div class="form-progress-wrapper">
     <PasscodeInstanceUrlForm />
-    <ProgressBox :sections="sections" />
+    <ProgressBox :sections="currentState" />
   </div>
 
   <div class="accordion-wrapper">
-    <Accordion :sections="sections" />
+    <Accordion :sections="currentState" />
   </div>
 </template>
 
 <script setup lang="ts">
-import PasscodeInstanceUrlForm from './components/PasscodeInstanceUrlForm.vue';
-import ProgressBox from './components/ProgressBox.vue';
-import Accordion from './components/Accordion.vue';
+import PasscodeInstanceUrlForm from "./components/PasscodeInstanceUrlForm.vue";
+import ProgressBox from "./components/ProgressBox.vue";
+import Accordion from "./components/AccordionPanel.vue";
 
-import { Section } from './types/Section';
+import { Section } from "./interfaces/Section";
+import langData from './assets/lang/en.json';
 
-const sections: Section[] = [
-  {
-    name: "Establishment",
-    completed: 0,
-    subsections: [
-      {
-        name: "GEDA init",
-        subitem: [
-          { item: "Step 1", inputValue: "", button: "true" },
-          { item: "Step 2", inputValue: "", button: "false" }
-        ]
-      },
-      {
-        name: "OOBI Resolution",
-        subitem: [
-          { item: "Step 1", inputValue: "", button: "true" },
-          { item: "Step 2", inputValue: "", button: "false" }
-        ]
-      },
-      {
-        name: "Challenge",
-        subitem: [
-          { item: "Step 1", inputValue: "", button: "true" },
-          { item: "Step 2", inputValue: "", button: "false" }
-        ]
-      }
-    ]
-  },
-  {
-    name: "Issuance",
-    completed: 0,
-    subsections: [
-      {
-        name: "Sign Document",
-        subitem: [
-          { item: "Step 1", inputValue: "", button: "false" }
-        ]
-      },
-      {
-        name: "Verify Identity",
-        subitem: [
-          { item: "Step 1", inputValue: "", button: "true" }
-        ]
-      }
-    ]
-  },
-  {
-    name: "Rotation",
-    completed: 0,
-    subsections: [
-      {
-        name: "Update Record",
-        subitem: [
-          { item: "Step 1", inputValue: "", button: "true" }
-        ]
-      },
-      {
-        name: "Confirm Rotation",
-        subitem: [
-          { item: "Step 1", inputValue: "", button: "false" }
-        ]
-      },
-      {
-        name: "Notify Parties",
-        subitem: [
-          { item: "Step 1", inputValue: "", button: "true" }
-        ]
-      }
-    ]
-  },
-  {
-    name: "Revocation",
-    completed: 0,
-    subsections: [
-      {
-        name: "Revoke Access",
-        subitem: [
-          { item: "Step 1", inputValue: "", button: "true" }
-        ]
-      }
-    ]
-  }
-];
+import { onMounted, ref } from "vue";
+
+const currentState = ref<Section[]>([]);
+
+onMounted(() => {
+  currentState.value = Object.keys(langData).map(sectionKey => {
+    const section = langData[sectionKey as keyof typeof langData];
+    return {
+      name: section.name,
+      subsections: section.subsections.map(subsection => ({
+        name: subsection.name,
+        desc: subsection.desc,
+        button: subsection.button?.map(btn => ({
+          text: btn.text,
+          action: btn.action,
+        })) || [],
+        subitem: subsection.subitems.map(subitem => ({
+          item: subitem.item,
+          completed: subitem.completed,
+          inputValue: subitem.inputValue != null ? subitem.inputValue : null, // Treat undefined or null as null
+          button: subitem.button?.map(btn => ({
+            text: btn.text,
+            action: btn.action,
+          })),
+        })) || [],
+      })),
+    };
+  });
+});
+
 
 </script>
 
@@ -110,7 +70,24 @@ const sections: Section[] = [
   flex-direction: row;
   gap: 2rem;
   max-width: 1200px;
-  margin: 20px auto;
+  margin: 100px auto;
   align-items: flex-start;
+}
+
+.header-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+
+  h1 {
+    text-align: center;
+    font: bold;
+  }
+
+  span {
+    margin-top: 10px;
+    text-align: start;
+    font-size: 18px;
+  }
 }
 </style>
