@@ -63,7 +63,7 @@ const toggleSection = (index: number) => {
 // Calculate completed subsections in a section
 const calculateCompleted = (section: Section) => {
   return section.subsections.filter(subsection =>
-    (subsection.subitem && subsection.subitem.every(item => item.completed)) // Safe check for subitem
+    (subsection.subitems && subsection.subitems.every(item => item.completed)) // Safe check for subitem
   ).length;
 };
 
@@ -75,31 +75,31 @@ const calculateTotal = (section: Section) => {
 // Transition Hooks
 const beforeEnter = (el: Element) => {
   const element = el as HTMLElement;
-  element.style.height = "0";
-  element.style.overflow = "hidden";
+  element.style.maxHeight = "0"; // Start with max-height as 0
+  element.style.overflow = "hidden"; // Hide content when collapsed
 };
 
 const enter = (el: Element) => {
   const element = el as HTMLElement;
-  element.style.transition = "height 0.3s ease-out";
-  element.style.height = `${element.scrollHeight}px`;
+  element.style.transition = "max-height 0.3s ease-out"; // Smooth transition
+  element.style.maxHeight = `${element.scrollHeight}px`; // Set max-height to content height
 };
 
 const beforeLeave = (el: Element) => {
   const element = el as HTMLElement;
-  element.style.transition = "height 0.3s ease-in";
-  element.style.height = `${element.scrollHeight}px`;
+  element.style.transition = "max-height 0.3s ease-in"; // Smooth collapse
+  element.style.maxHeight = `${element.scrollHeight}px`; // Ensure we know the content's height
 };
 
 const leave = (el: Element) => {
   const element = el as HTMLElement;
-  element.style.height = "0";
+  element.style.maxHeight = "0"; // Collapse to 0 height
 };
 </script>
 
 <style scoped>
 .accordion-wrapper {
-  width: 100%;
+  width: 100vw;
   max-width: 1280px;
   margin: 0 auto;
 }
@@ -120,6 +120,10 @@ const leave = (el: Element) => {
 .accordion-content {
   padding: 1rem;
   background-color: #f9f9f9;
+
+  max-height: 0; /* Initially collapsed */
+  transition: max-height 0.3s ease-in-out; /* Smooth transition */
+  overflow: hidden; /* Hide content when collapsed */
 }
 
 .mini-process-list {

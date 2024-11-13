@@ -29,39 +29,41 @@ import ProgressBox from "./components/ProgressBox.vue";
 import Accordion from "./components/AccordionPanel.vue";
 
 import { Section } from "./interfaces/Section";
-import langData from './assets/lang/en.json';
+import langData from "./assets/lang/en.json";
 
 import { onMounted, ref } from "vue";
 
 const currentState = ref<Section[]>([]);
 
 onMounted(() => {
-  currentState.value = Object.keys(langData).map(sectionKey => {
+  currentState.value = Object.keys(langData).map((sectionKey) => {
     const section = langData[sectionKey as keyof typeof langData];
     return {
       name: section.name,
-      subsections: section.subsections.map(subsection => ({
+      subsections: section.subsections.map((subsection) => ({
         name: subsection.name,
         desc: subsection.desc,
-        button: subsection.button?.map(btn => ({
-          text: btn.text,
-          action: btn.action,
-        })) || [],
-        subitem: subsection.subitems.map(subitem => ({
-          item: subitem.item,
-          completed: subitem.completed,
-          inputValue: subitem.inputValue != null ? subitem.inputValue : null, // Treat undefined or null as null
-          button: subitem.button?.map(btn => ({
+        button:
+          subsection.button?.map((btn) => ({
             text: btn.text,
             action: btn.action,
-          })),
-        })) || [],
+            disabled: btn.disabled,
+          })) || [],
+        subitems: subsection.subitems.map((subitem) => ({
+          item: subitem.item,
+          completed: subitem.completed,
+          input: subitem.input || null,
+          button:
+            subitem.button?.map((btn) => ({
+              text: btn.text,
+              action: btn.action,
+              disabled: btn.disabled,
+            })) || [],
+        })),
       })),
     };
   });
 });
-
-
 </script>
 
 <style scoped>

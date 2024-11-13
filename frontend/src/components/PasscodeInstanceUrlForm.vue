@@ -19,7 +19,7 @@
       />
     </div>
     <div class="connect-btn-container">
-      <button @click="connect">Connect</button>
+      <button @click="connect" :disabled="instanceUrl.length <=0 || passcode.length <=0">Connect</button>
     </div>
   </div>
 </template>
@@ -75,5 +75,8 @@ const connect = () => {
 
 .connect-btn-container button:hover {
   background-color: #0056b3;
+}
+.connect-btn-container button:disabled {
+  background-color: #ccc;
 }
 </style>

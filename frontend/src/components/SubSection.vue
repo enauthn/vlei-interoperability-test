@@ -7,9 +7,14 @@
         <span>{{ subsection.desc }}</span>
       </div>
       <button
-        v-if="subsection.button && subsection.button.length > 0 && subsection.button[0].text"
+        v-if="
+          subsection.button &&
+          subsection.button.length > 0 &&
+          subsection.button[0].text
+        "
         class="submit-button"
-        @click="btnSubmit(subsection.button[0].action || '')"
+        :disabled="subsection.button[0].disabled"
+        @click="btnSubSection(subsection)"
       >
         {{ subsection.button[0].text }}
       </button>
@@ -18,53 +23,99 @@
     <div class="subsection-content">
       <div
         class="input-row"
-        v-for="(subitem, index) in subsection.subitem"
+        v-for="(subitems, index) in subsection.subitems"
         :key="index"
-        :style="subitem.inputValue !== null ? { justifyContent: 'space-between' } : {}"
-
+        :style="subitems.input ? { justifyContent: 'space-between' } : {}"
       >
-        <label :for="subitem.item" class="input-label">{{ subitem.item }}</label>
+        <label :for="subitems.item" class="input-label">
+          {{ subitems.item }}
+        </label>
 
-        <!-- Hide the input if inputValue is null -->
+        <!-- Hide the input if input is not provided -->
         <input
-          v-model="subitem.inputValue"
-          :placeholder="subitem.item"
+          v-if="subitems.input"
+          v-model="subitems.input.value"
+          :placeholder="subitems.item"
           type="text"
-          :id="subitem.item"
-          :readonly="!subitem.button || !subitem.button[0].text"
-          :hidden="subitem.inputValue === null"
+          :id="subitems.item"
+          :disabled="subitems.input.disabled"
           class="input-field"
         />
 
         <button
-          v-if="subitem.button && subitem.button.length > 0 && subitem.button[0].text"
+          v-if="
+            subitems.button &&
+            subitems.button.length > 0 &&
+            subitems.button[0].text
+          "
           class="submit-button"
-          :disabled="subitem.inputValue === ''"
-          @click="btnSubmit(subitem.button[0].action || '')"
+          :disabled="
+            subitems.input?.value === '' || subitems.button[0].disabled
+          "
+          @click="btnsubitems(subitems)"
         >
-          {{ subitem.button[0].text }} <!-- Display the button text -->
+          {{ subitems.button[0].text }}
         </button>
       </div>
     </div>
   </div>
 </template>
 
-
-
-
 <script setup lang="ts">
 import { defineProps } from "vue";
-import { Subsection } from "../interfaces/Section";
+import { Subsection, Subitem } from "../interfaces/Section";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{
   parentNumber: string;
   subsection: Subsection;
 }>();
 
+const btnSubSection = (subsection: Subsection) => {
+  if (subsection.button && subsection.button.length > 0) {
+    console.log(
+      "Action triggered for subsection: ",
+      subsection.button[0].action
+    );
+  } else {
+    console.log("No action for subsection");
+  }
 
-const btnSubmit = (action : string) =>{
-  console.log(action)
-}
+  if (subsection.button && subsection.button[0].action === "init-gleif-aids") {
+    subsection.button[0].disabled = true;
+    subsection.subitems.forEach((subitems) => {
+      if (subitems.input) {
+        subitems.input.value = "123"; // Update with random string
+      }
+      subitems.completed = true;
+    });
+    console.log("Updated subitemss with random strings.");
+  }
+
+  if (
+    subsection.button &&
+    subsection.button[0].action === "generate-gleif-oobis"
+  ) {
+    subsection.button[0].disabled = true;
+    subsection.subitems.forEach((subitems) => {
+      if (subitems.input) {
+        subitems.input.value = "456"; // Update with random string
+      }
+      subitems.completed = true;
+    });
+    console.log("Updated subitemss with random strings.");
+  }
+};
+
+const btnsubitems = (subitems: Subitem) => {
+  if (subitems.button && subitems.button.length > 0) {
+    subitems.button[0].disabled = true;
+    console.log("Action triggered for subitems: ", subitems.button[0].action);
+    subitems.completed = true;
+    console.log(`${subitems.item} marked as completed.`);
+  } else {
+    console.log("No action for subitems");
+  }
+};
 </script>
 
 <style scoped>
@@ -81,7 +132,7 @@ const btnSubmit = (action : string) =>{
   padding-bottom: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* Added gap for spacing between description and button */
+  gap: 0.5rem;
 }
 
 .subsection-description {
@@ -96,9 +147,7 @@ const btnSubmit = (action : string) =>{
   background-color: #28a745;
   color: white;
   cursor: pointer;
-  margin-top: 1rem;
-  width: auto; /* Ensures the button size is not full width */
-  align-self: flex-start; /* Align the button with the input field */
+  align-self: flex-start;
 }
 
 .submit-button:hover {
@@ -113,7 +162,6 @@ const btnSubmit = (action : string) =>{
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-
 }
 
 .input-row {
@@ -133,12 +181,6 @@ const btnSubmit = (action : string) =>{
   padding: 0.5rem;
   border-radius: 4px;
   border: 1px solid #ccc;
-  margin-right: 1rem; /* Ensure spacing between input and button */
+  margin-right: 1rem;
 }
-
-.submit-button {
-  width: auto; /* Ensure button is not full width */
-  margin: auto 0;
-}
-
 </style>

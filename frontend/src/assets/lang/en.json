@@ -6,38 +6,60 @@
         "name": "Initialize GEDA and GIDA",
         "desc": "Initialize GLEIF External Delegated AID (GEDA) and GLEIF Internal Delegated AID (GIDA) that consist of two internal and two external GLEIF Authorized Representatives (GARs), respectively.",
         "button": [
-          { "text": "Initialize GLEIF’s AIDs", "action": "init-gleif-aids" }
+          {
+            "text": "Initialize GLEIF’s AIDs",
+            "action": "init-gleif-aids",
+            "disabled": false
+          }
         ],
         "subitems": [
           {
             "item": "External GAR 1’s AID",
             "completed": false,
-            "inputValue": ""
+            "input": {
+              "value": "",
+              "disabled": true
+            }
           },
           {
             "item": "External GAR 2’s AID",
             "completed": false,
-            "inputValue": ""
+            "input": {
+              "value": "",
+              "disabled": true
+            }
           },
           {
             "item": "GEDA",
             "completed": false,
-            "inputValue": ""
+            "input": {
+              "value": "",
+              "disabled": true
+            }
           },
           {
             "item": "Internal GAR 1’s AID",
             "completed": false,
-            "inputValue": ""
+            "input": {
+              "value": "",
+              "disabled": true
+            }
           },
           {
             "item": "Internal GAR 2’s AID",
             "completed": false,
-            "inputValue": ""
+            "input": {
+              "value": "",
+              "disabled": true
+            }
           },
           {
             "item": "GIDA",
             "completed": false,
-            "inputValue": ""
+            "input": {
+              "value": "",
+              "disabled": true
+            }
           }
         ]
       },
@@ -49,7 +71,11 @@
             "item": "I confirm that 3 AIDs for the QARs have been created.",
             "completed": false,
             "button": [
-              { "text": "Confirm", "action": "confirm-3-aids-created" }
+              {
+                "text": "Confirm",
+                "action": "confirm-3-aids-created",
+                "disabled": false
+              }
             ]
           }
         ]
@@ -58,38 +84,101 @@
         "name": "Resolve GLEIF’s OOBIs",
         "desc": "Generate Out-of-band Introductions (OOBIs) of GARs, GEDA, and GIDA. Your application’s AIDs should resolve these OOBIs.",
         "button": [
-          { "text": "Generate GLEIF’s OOBIs", "action": "generate-gleif-oobis" }
+          {
+            "text": "Generate GLEIF’s OOBIs",
+            "action": "generate-gleif-oobis",
+            "disabled": false
+          }
         ],
         "subitems": [
           {
             "item": "External GAR 1’s OOBI",
             "completed": false,
-            "inputValue": ""
+            "input": {
+              "value": "",
+              "disabled": true
+            }
           },
           {
             "item": "External GAR 2’s OOBI",
             "completed": false,
-            "inputValue": ""
+            "input": {
+              "value": "",
+              "disabled": true
+            }
           },
           {
             "item": "GEDA’s OOBI",
             "completed": false,
-            "inputValue": ""
+            "input": {
+              "value": "",
+              "disabled": true
+            }
           },
           {
             "item": "Internal GAR 1’s OOBI",
             "completed": false,
-            "inputValue": ""
+            "input": {
+              "value": "",
+              "disabled": true
+            }
           },
           {
             "item": "Internal GAR 2’s OOBI",
             "completed": false,
-            "inputValue": ""
+            "input": {
+              "value": "",
+              "disabled": true
+            }
           },
           {
             "item": "GIDA’s OOBI",
             "completed": false,
-            "inputValue": ""
+            "input": {
+              "value": "",
+              "disabled": true
+            }
+          }
+        ]
+      },
+      {
+        "name": "Resolve QARs’ OOBIs",
+        "desc": "Generate OOBIs of your QARs’ AID and put them below. They will be resolved by the GARs.",
+        "subitems": [
+          {
+            "item": "QAR 1’s OOBI",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabled": false
+            }
+          },
+          {
+            "item": "QAR 2’s OOBI",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabled": false
+            }
+          },
+          {
+            "item": "QAR 3’s OOBI",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabled": false
+            }
+          },
+          {
+            "item": "",
+            "completed": false,
+            "button": [
+              {
+                "text": "Resolve",
+                "action": "qar-oobi-resolve",
+                "disabled": false
+              }
+            ]
           }
         ]
       }
@@ -105,7 +194,10 @@
           {
             "item": "Step 1",
             "completed": false,
-            "inputValue": "",
+            "input": {
+              "value": "",
+              "disabled": true
+            },
             "button": [
               { "text": "Start", "action": "start-sign-document-step1" },
               {
@@ -137,7 +229,10 @@
           {
             "item": "Step 1",
             "completed": false,
-            "inputValue": "",
+            "input": {
+              "value": "",
+              "disabled": true
+            },
             "button": [
               { "text": "Start", "action": "start-sign-document-step1" },
               {
@@ -169,7 +264,10 @@
           {
             "item": "Step 1",
             "completed": false,
-            "inputValue": "",
+            "input": {
+              "value": "",
+              "disabled": true
+            },
             "button": [
               { "text": "Start", "action": "start-sign-document-step1" },
               {

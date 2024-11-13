@@ -1,11 +1,17 @@
 export interface Button {
-  text: string;         
-  action?: string;          
+  text: string;        
+  disabled: boolean;
+  action: string;          
+}
+
+export interface Input{
+  value: string;
+  disabled:boolean;
 }
 
 export interface Subitem {
   item: string;         
-  inputValue: string | null;   
+  input: Input | null;   
   button?: Button[];    
   completed: boolean;   
 }
@@ -14,7 +20,7 @@ export interface Subsection {
   name: string;
   desc: string;         
   button?: Button[];    
-  subitem: Subitem[];   
+  subitems: Subitem[];   
 }
 
 export interface Section {
