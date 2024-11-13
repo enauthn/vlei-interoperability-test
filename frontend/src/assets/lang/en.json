@@ -144,6 +144,13 @@
       {
         "name": "Resolve QARs’ OOBIs",
         "desc": "Generate OOBIs of your QARs’ AID and put them below. They will be resolved by the GARs.",
+        "button": [
+            {
+              "text": "Resolve",
+              "action": "resolve-qar-oobis",
+              "disabled": false
+            }
+          ],
         "subitems": [
           {
             "item": "QAR 1’s OOBI",
@@ -168,17 +175,6 @@
               "value": "",
               "disabled": false
             }
-          },
-          {
-            "item": "",
-            "completed": false,
-            "button": [
-              {
-                "text": "Resolve",
-                "action": "qar-oobi-resolve",
-                "disabled": false
-              }
-            ]
           }
         ]
       }

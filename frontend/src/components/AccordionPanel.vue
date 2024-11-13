@@ -6,14 +6,14 @@
       class="accordion-section"
     >
       <div class="accordion-header" @click="toggleSection(index)">
-        <!-- Display the section index (number) and section name with completed/total count -->
         <span>
-          {{ index + 1 }}. {{ section.name }} ({{ calculateCompleted(section) }}/{{ calculateTotal(section) }})
+          {{ index + 1 }}. {{ section.name }} ({{
+            calculateCompleted(section)
+          }}/{{ calculateTotal(section) }})
         </span>
         <span :class="{ 'rotate-180': isActive(index) }">▼</span>
       </div>
 
-      <!-- Transition wrapper for accordion-content -->
       <Transition
         name="accordion"
         @before-enter="beforeEnter"
@@ -24,7 +24,6 @@
         <div v-if="isActive(index)" class="accordion-content">
           <ul class="mini-process-list">
             <li v-for="(subsection, i) in section.subsections" :key="i">
-              <!-- Pass the entire subsection object -->
               <SubSection
                 :parentNumber="`${index + 1}.${i + 1}`"
                 :subsection="subsection"
@@ -62,8 +61,9 @@ const toggleSection = (index: number) => {
 
 // Calculate completed subsections in a section
 const calculateCompleted = (section: Section) => {
-  return section.subsections.filter(subsection =>
-    (subsection.subitems && subsection.subitems.every(item => item.completed)) // Safe check for subitem
+  return section.subsections.filter(
+    (subsection) =>
+      subsection.subitems && subsection.subitems.every((item) => item.completed) // Safe check for subitem
   ).length;
 };
 
@@ -75,20 +75,20 @@ const calculateTotal = (section: Section) => {
 // Transition Hooks
 const beforeEnter = (el: Element) => {
   const element = el as HTMLElement;
-  element.style.maxHeight = "0"; // Start with max-height as 0
-  element.style.overflow = "hidden"; // Hide content when collapsed
+  element.style.maxHeight = "0";
+  element.style.overflow = "hidden";
 };
 
 const enter = (el: Element) => {
   const element = el as HTMLElement;
-  element.style.transition = "max-height 0.3s ease-out"; // Smooth transition
-  element.style.maxHeight = `${element.scrollHeight}px`; // Set max-height to content height
+  element.style.transition = "max-height 0.3s ease-out";
+  element.style.maxHeight = `${element.scrollHeight}px`;
 };
 
 const beforeLeave = (el: Element) => {
   const element = el as HTMLElement;
-  element.style.transition = "max-height 0.3s ease-in"; // Smooth collapse
-  element.style.maxHeight = `${element.scrollHeight}px`; // Ensure we know the content's height
+  element.style.transition = "max-height 0.3s ease-in";
+  element.style.maxHeight = `${element.scrollHeight}px`;
 };
 
 const leave = (el: Element) => {

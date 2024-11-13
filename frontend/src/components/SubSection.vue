@@ -2,7 +2,6 @@
   <div class="subsection-wrapper">
     <div class="subsection-header">
       <span>{{ parentNumber }} {{ subsection.name }}</span>
-      <!-- Display description if provided -->
       <div v-if="subsection.desc" class="subsection-description">
         <span>{{ subsection.desc }}</span>
       </div>
@@ -13,11 +12,13 @@
           subsection.button[0].text
         "
         class="submit-button"
-        :disabled="subsection.button[0].disabled"
+        :disabled="subsection.button[0].disabled || isLoading"
         @click="btnSubSection(subsection)"
       >
-        {{ subsection.button[0].text }}
+        <span v-if="isLoading" class="loading-spinner"></span>
+        {{ isLoading ? 'Loading...' : subsection.button[0].text }}
       </button>
+      <span v-if="errorMsg" class="error-msg">* {{ errorMsg }}</span>
     </div>
 
     <div class="subsection-content">
@@ -31,7 +32,6 @@
           {{ subitems.item }}
         </label>
 
-        <!-- Hide the input if input is not provided -->
         <input
           v-if="subitems.input"
           v-model="subitems.input.value"
@@ -62,48 +62,75 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import { defineProps } from "vue";
 import { Subsection, Subitem } from "../interfaces/Section";
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{
   parentNumber: string;
   subsection: Subsection;
 }>();
 
+const isLoading = ref(false);
+const errorMsg = ref("");
+
 const btnSubSection = (subsection: Subsection) => {
-  if (subsection.button && subsection.button.length > 0) {
-    console.log(
-      "Action triggered for subsection: ",
-      subsection.button[0].action
-    );
-  } else {
-    console.log("No action for subsection");
-  }
+  isLoading.value = true;
+  errorMsg.value = ""; // Reset error message
 
+  // 1.1 Initialize GEDA and GIDA
   if (subsection.button && subsection.button[0].action === "init-gleif-aids") {
-    subsection.button[0].disabled = true;
-    subsection.subitems.forEach((subitems) => {
-      if (subitems.input) {
-        subitems.input.value = "123"; // Update with random string
-      }
-      subitems.completed = true;
-    });
-    console.log("Updated subitemss with random strings.");
-  }
+      subsection.button[0].disabled = true;
 
-  if (
-    subsection.button &&
-    subsection.button[0].action === "generate-gleif-oobis"
-  ) {
-    subsection.button[0].disabled = true;
-    subsection.subitems.forEach((subitems) => {
-      if (subitems.input) {
-        subitems.input.value = "456"; // Update with random string
+      let hasError = false;
+
+      subsection.subitems.forEach((subitems) => {
+        if (subitems.input) {
+          subitems.input.value = "123"; // Update with random string
+          subitems.completed = true;
+        } else {
+          hasError = true;
+          errorMsg.value = "Please enter input for all required fields.";
+          subsection.button[0].disabled = false;
+        }
+      });
+
+      if (!hasError) {
+        console.log("Updated subitems with random strings.");
+        errorMsg.value = ""; // Clear error if no issues
       }
-      subitems.completed = true;
-    });
-    console.log("Updated subitemss with random strings.");
-  }
+
+      isLoading.value = false;
+    }
+
+
+  // 1.4 Resolve QAR'S OOBIs
+  setTimeout(() => {
+    if (subsection.button && subsection.button[0].action === "resolve-qar-oobis") {
+      subsection.button[0].disabled = true;
+
+      let hasError = false;
+
+      subsection.subitems.forEach((subitems) => {
+        if (subitems.input && subitems.input.value !== "") {
+          subitems.input.value = "456"; // Update with random string
+          subitems.completed = true;
+        } else {
+          hasError = true;
+          errorMsg.value = "Please enter input for all required fields.";
+          subsection.button[0].disabled = false;
+        }
+      });
+
+      if (!hasError) {
+        console.log("Updated subitems with random strings.");
+        errorMsg.value = ""; // Clear error if no issues
+      }
+
+      isLoading.value = false;
+    }
+  }, 1000); // Simulate async action
 };
 
 const btnsubitems = (subitems: Subitem) => {
@@ -148,6 +175,8 @@ const btnsubitems = (subitems: Subitem) => {
   color: white;
   cursor: pointer;
   align-self: flex-start;
+  display: flex;
+  align-items: center;
 }
 
 .submit-button:hover {
@@ -156,6 +185,28 @@ const btnsubitems = (subitems: Subitem) => {
 
 .submit-button:disabled {
   background-color: #ccc;
+}
+
+.loading-spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #fff;
+  border-top: 2px solid #ccc;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
 }
 
 .subsection-content {
