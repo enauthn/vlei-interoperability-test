@@ -1,119 +1,121 @@
-# services:
-    # manager:
-    #     image: gleif/sally:0.9.1
-    #     environment:
-    #         - PYTHONUNBUFFERED=1
-    #         - PYTHONIOENCODING=UTF-8
-    #     entrypoint: sally
-    #     command:
-    #         - hook
-    #         - demo
-    #     healthcheck:
-    #         test:
-    #             - CMD
-    #             - curl
-    #             - -f
-    #             - http://localhost:9923/
-    #         interval: 2s
-    #         timeout: 3s
-    #         retries: 5
-    #         start_period: 2s
-    #     ports:
-    #         - 9923:9923     
+services:
+    manager:
+        # image: gleif/sally:0.9.1
+        image: my-sally-image
+        platform: linux/arm64
+        environment:
+            - PYTHONUNBUFFERED=1
+            - PYTHONIOENCODING=UTF-8
+        entrypoint: sally
+        command:
+            - hook
+            - demo
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - -f
+                - http://127.0.0.1:9923/
+            interval: 2s
+            timeout: 3s
+            retries: 5
+            start_period: 2s
+        ports:
+            - 9923:9923     
 
-    # vlei-reporting:
-    #     image: gleif/sally:0.9.1
-    #     environment:
-    #         - PYTHONUNBUFFERED=1
-    #         - PYTHONIOENCODING=UTF-8
-    #     volumes:
-    #         - ./config/sally-oobis.json:/sally/scripts/keri/cf/sally-oobis.json
-    #         - ./config/sally-incept.json:/sally/sally-incept.json
-    #     entrypoint: ["/bin/bash", "-c"]
-    #     command: |
-    #         "
-    #         echo "TEST" &&
-    #         pwd &&
-    #         kli -h &&
-    #         # kli init --name sally --nopasscode --config-dir /sally/scripts --config-file sally-oobis --salt 0ACDXyMzq1Nxc4OWxtbm9fle &&
-    #         # kli incept --name sally --alias sally --file /sally/sally-incept.json &&
-    #         # sally -h &
-    #         # sally server start --name sally --alias sally --web-hook http://manager:9923 --auth EHOuGiHMxJShXHgSb6k_9pqxmRb8H-LT0R2hQouHp8pW
-    #         sally hook demo
-    #         "
-    #     healthcheck:
-    #         test:
-    #             - CMD
-    #             - curl
-    #             - -f
-    #             - http://127.0.0.1:9723/oobi
-    #         interval: 2s
-    #         timeout: 3s
-    #         retries: 5
-    #         start_period: 2s
-    #     ports:
-    #         - 9723:9723            
+    vlei-reporting:
+        # image: gleif/sally:0.9.1
+        image: my-sally-image
+        environment:
+            - PYTHONUNBUFFERED=1
+            - PYTHONIOENCODING=UTF-8
+        volumes:
+            - ./config/sally-oobis.json:/sally/scripts/keri/cf/sally-oobis.json
+            - ./config/sally-incept.json:/sally/sally-incept.json
+        depends_on:
+            - vlei-server           
+            - witness-demo
+        entrypoint: ["/bin/bash", "-c"]
+        command: |
+            "
+            sleep 10 &&
+            kli init --name sally --nopasscode --config-dir /sally/scripts --config-file sally-oobis --salt 0ACDXyMzq1Nxc4OWxtbm9fle &&
+            kli incept --name sally --alias sally --file /sally/sally-incept.json &&
+            sally server start --name sally --alias sally --web-hook http://manager:9923 --auth EO-patR49fRZzBOjAt5wd3wsoUH1zl1xkYZnJtJK3eVP
+            "
+        ports:
+            - 9723:9723 
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - -f
+                - http://127.0.0.1:9723/oobi
+            interval: 2s
+            timeout: 3s
+            retries: 5
+            start_period: 2s            
 
-    # vlei-server:
-    #     image: gleif/vlei:0.2.0
-    #     environment:
-    #         - PYTHONUNBUFFERED=1
-    #         - PYTHONIOENCODING=UTF-8
-    #     command:
-    #         - vLEI-server
-    #         - -s
-    #         - ./schema/acdc
-    #         - -c
-    #         - ./samples/acdc/
-    #         - -o
-    #         - ./samples/oobis/
-    #     healthcheck:
-    #         test:
-    #             - CMD
-    #             - curl
-    #             - -f
-    #             - http://localhost:7723/oobi/EBfdlu8R27Fbx-ehrqwImnK-8Cm79sqbAQ4MmvEAYqao
-    #         interval: 2s
-    #         timeout: 3s
-    #         retries: 5
-    #         start_period: 2s
-    #     ports:
-    #         - 7723:7723
+    vlei-server:
+        image: gleif/vlei:0.2.0
+        environment:
+            - PYTHONUNBUFFERED=1
+            - PYTHONIOENCODING=UTF-8
+        command:
+            - vLEI-server
+            - -s
+            - ./schema/acdc
+            - -c
+            - ./samples/acdc/
+            - -o
+            - ./samples/oobis/
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - -f
+                - http://127.0.0.1:7723/oobi/EBfdlu8R27Fbx-ehrqwImnK-8Cm79sqbAQ4MmvEAYqao
+            interval: 2s
+            timeout: 3s
+            retries: 5
+            start_period: 2s
+        ports:
+            - 7723:7723
 
-    # witness-demo:
-    #     image: weboftrust/keri:1.1.18
-    #     environment:
-    #         - PYTHONUNBUFFERED=1
-    #         - PYTHONIOENCODING=UTF-8
-    #     entrypoint: kli
-    #     command:
-    #         - witness
-    #         - demo
-    #     healthcheck:
-    #         test: ['CMD', 'curl', '-f', 'http://localhost:5642/oobi']
-    #         interval: 2s
-    #         timeout: 3s
-    #         retries: 5
-    #         start_period: 2s
-    #     volumes:
-    #         - ./config/witness-demo:/keripy/scripts/keri/cf/main
-    #     ports:
-    #         - 5642:5642
-    #         - 5643:5643
-    #         - 5644:5644
-    #         - 5645:5645
-    #         - 5646:5646
-    #         - 5647:5647
+    witness-demo:
+        image: weboftrust/keri:1.1.18
+        environment:
+            - PYTHONUNBUFFERED=1
+            - PYTHONIOENCODING=UTF-8
+        entrypoint: kli
+        command:
+            - witness
+            - demo
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://127.0.0.1:5642/oobi']
+            interval: 2s
+            timeout: 3s
+            retries: 5
+            start_period: 2s
+        volumes:
+            - ./config/witness-demo:/keripy/scripts/keri/cf/main
+        ports:
+            - 5642:5642
+            - 5643:5643
+            - 5644:5644
+            - 5645:5645
+            - 5646:5646
+            - 5647:5647
 
-    # deps:
-    #     image: alpine
-    #     command: ['echo', 'Dependencies running']
-    #     depends_on:
-            # manager:
-            #     condition: service_healthy
-            # vlei-reporting:
-            #     condition: service_healthy
-            # vlei-server:
-            #     condition: service_healthy
-            # witness-demo:
-            #     condition: service_healthy
+    deps:
+        image: alpine
+        command: ['echo', 'Dependencies running']
+        depends_on:
+            manager:
+                condition: service_healthy
+            vlei-reporting:
+                condition: service_healthy
+            vlei-server:
+                condition: service_healthy
+            witness-demo:
+                condition: service_healthy
