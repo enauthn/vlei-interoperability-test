@@ -5,6 +5,7 @@ export interface InitializeGLEIF {
     aidGEDA: string
     aidIGAR1: string
     aidIGAR2: string
+    aidGIDA: string
 }
 
 export interface ResolveGLEIF {
