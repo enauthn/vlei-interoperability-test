@@ -11,8 +11,7 @@
           subsection.button &&
           subsection.button.length > 0 &&
           subsection.button[0].text &&
-          subsection.button[0].text !== 'Resolve' &&
-          subsection.button[0].text !== 'Approve'
+          subsection.button[0].position === 'top'
         "
         class="submit-button"
         :disabled="subsection.button[0].disabled || isLoading"
@@ -69,15 +68,13 @@
           subsection.button &&
           subsection.button.length > 0 &&
           subsection.button[0].text &&
-          (subsection.button[0].text === 'Resolve' ||
-            subsection.button[0].text === 'Approve')
+          subsection.button[0].position === 'bottom'
         "
         class="submit-button bottom-left-button"
         :disabled="subsection.button[0].disabled || isLoading"
         @click="btnSubSection(subsection)"
         :hidden="
-          subsection.button[0].text === 'Resolve' ||
-          subsection.button[0].text === 'Approve'
+          subsection.button[0].position === 'bottom'
         "
       >
         <span v-if="isLoading" class="loading-spinner"></span>

@@ -1,7 +1,8 @@
 export interface Button {
   text: string;        
   disabled: boolean;
-  action: string;          
+  action: string;    
+  position?: string;      
 }
 
 export interface Input{

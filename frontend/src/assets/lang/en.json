@@ -148,7 +148,8 @@
           {
             "text": "Resolve",
             "action": "resolve-qar-oobis",
-            "disabled": false
+            "disabled": false,
+            "position" : "bottom"
           }
         ],
         "subitems": [

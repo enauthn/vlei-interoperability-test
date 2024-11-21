@@ -48,6 +48,7 @@ onMounted(() => {
             text: btn.text,
             action: btn.action,
             disabled: btn.disabled,
+            position: btn.position || 'top'
           })) || [],
         subitems: subsection.subitems.map((subitem) => ({
           item: subitem.item,
@@ -58,6 +59,8 @@ onMounted(() => {
               text: btn.text,
               action: btn.action,
               disabled: btn.disabled,
+              position: btn.position || 'top'
+
             })) || [],
         })),
       })),
