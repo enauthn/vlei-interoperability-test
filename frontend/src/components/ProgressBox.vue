@@ -24,7 +24,7 @@ const props = defineProps<{ sections: Section[] }>();
 // Function to determine the status class based on completion of Subitems within Subsections
 const sectionStatusClass = (section: Section) => {
   // Flatten all subitems from subsections and filter for valid subitems
-  const allSubitems = section.subsections.flatMap(subsection => subsection.subitems || []);
+  const allSubitems = section.subsections.flatMap(subsection => subsection.subsubsections || []);
 
   // Check if all subitems have the 'completed' property and if all or some are completed
   const allCompleted = allSubitems.every(item => item?.completed);

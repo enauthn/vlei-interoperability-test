@@ -29,15 +29,15 @@ import ProgressBox from "./components/ProgressBox.vue";
 import Accordion from "./components/AccordionPanel.vue";
 
 import { Section } from "./interfaces/Section";
-import langData from "./assets/lang/en.json";
+import config from "./assets/config.json";
 
 import { onMounted, ref } from "vue";
 
 const currentState = ref<Section[]>([]);
 
 onMounted(() => {
-  currentState.value = Object.keys(langData).map((sectionKey) => {
-    const section = langData[sectionKey as keyof typeof langData];
+  currentState.value = Object.keys(config).map((sectionKey) => {
+    const section = config[sectionKey as keyof typeof config];
     return {
       name: section.name,
       subsections: section.subsections.map((subsection) => ({
@@ -48,19 +48,18 @@ onMounted(() => {
             text: btn.text,
             action: btn.action,
             disabledByDefault: btn.disabledByDefault,
-            position: btn.position || 'top'
+            position: btn.position || "top",
           })) || [],
-        subitems: subsection.subitems.map((subitem) => ({
-          name: subitem.name,
-          completed: subitem.completed,
-          input: subitem.input || null,
+        subsubsections: subsection.subsubsections.map((subsubsection) => ({
+          name: subsubsection.name,
+          completed: subsubsection.completed,
+          input: subsubsection.input || null,
           button:
-            subitem.button?.map((btn) => ({
+            subsubsection.button?.map((btn) => ({
               text: btn.text,
               action: btn.action,
               disabledByDefault: btn.disabledByDefault,
-              position: btn.position || 'top'
-
+              position: btn.position || "top",
             })) || [],
         })),
       })),

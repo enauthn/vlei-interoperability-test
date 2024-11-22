@@ -12,7 +12,7 @@
             "disabledByDefault": false
           }
         ],
-        "subitems": [
+        "subsubsections": [
           {
             "name": "External GAR 1’s AID",
             "completed": false,
@@ -66,7 +66,7 @@
       {
         "name": "Initialize QARs’ AID",
         "desc": "Your application should create 3 AIDs for QVI Authorized Representatives (QARs) in your QVI application.",
-        "subitems": [
+        "subsubsections": [
           {
             "name": "I confirm that 3 AIDs for the QARs have been created.",
             "completed": false,
@@ -90,7 +90,7 @@
             "disabledByDefault": false
           }
         ],
-        "subitems": [
+        "subsubsections": [
           {
             "name": "External GAR 1’s OOBI",
             "completed": false,
@@ -152,7 +152,7 @@
             "position" : "bottom"
           }
         ],
-        "subitems": [
+        "subsubsections": [
           {
             "name": "QAR 1’s OOBI",
             "completed": false,
@@ -182,7 +182,7 @@
       {
         "name": "Challenges and responses",
         "desc": "Generate challenges from the GARs to your QARs’ AIDs. Your application should respond to these challenges.",
-        "subitems": [
+        "subsubsections": [
           {
             "name": "External GAR 1 to QAR 1",
             "completed": false,
@@ -621,7 +621,7 @@
       {
         "name":"Create a QVI AID",
         "desc":"Create a multisig AID from the three QARs’ AIDs. The multisig AID must be delegated by the GEDA.",
-        "subitems":[
+        "subsubsections":[
           {
             "name":"GEDA",
             "completed": false,
@@ -644,7 +644,7 @@
       {
         "name":"Approve delegation of the QVI AID",
         "desc":"The GEDA approve the creation of the QVI AID.",
-        "subitems":[
+        "subsubsections":[
           {
             "name":"QVI AID",
             "completed": false,
@@ -664,7 +664,7 @@
       {
         "name":"Resolve the QVI AID’s OOBI",
         "desc":"To get the QVI AID’s OOBI resolved:\n1. Your application should fetch the GEDA’s key event log (KEL) to see if it has approved the QVI AID creation.\n2. The QVI AID must approve the end point authorizations for all of its three agents.\n3. Generate the QVI AID’s OOBI",
-        "subitems":[
+        "subsubsections":[
           {
             "name":"QVI AID’s OOBI",
             "completed": false,
@@ -689,7 +689,7 @@
       {
         "name": "Sign Document",
         "desc": "Description for Sign Document",
-        "subitems": [
+        "subsubsections": [
           {
             "name": "Step 1",
             "completed": false,
@@ -724,7 +724,7 @@
       {
         "name": "Sign Document",
         "desc": "Description for Sign Document",
-        "subitems": [
+        "subsubsections": [
           {
             "name": "Step 1",
             "completed": false,
@@ -759,7 +759,7 @@
       {
         "name": "Sign Document",
         "desc": "Description for Sign Document",
-        "subitems": [
+        "subsubsections": [
           {
             "name": "Step 1",
             "completed": false,

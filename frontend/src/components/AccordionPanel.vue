@@ -63,7 +63,7 @@ const toggleSection = (index: number) => {
 const calculateCompleted = (section: Section) => {
   return section.subsections.filter(
     (subsection) =>
-      subsection.subitems && subsection.subitems.every((item) => item.completed) // Safe check for subitem
+      subsection.subsubsections && subsection.subsubsections.every((item) => item.completed) // Safe check for subitem
   ).length;
 };
 

@@ -10,7 +10,7 @@ export interface Input{
   disabledByDefault:boolean;
 }
 
-export interface Subitem {
+export interface SubSubsection {
   name: string;         
   input: Input | null;   
   button?: Button[];    
@@ -21,7 +21,7 @@ export interface Subsection {
   name: string;
   desc: string;         
   button?: Button[];    
-  subitems: Subitem[];   
+  subsubsections: SubSubsection[];   
 }
 
 export interface Section {
