@@ -47,18 +47,18 @@ onMounted(() => {
           subsection.button?.map((btn) => ({
             text: btn.text,
             action: btn.action,
-            disabled: btn.disabled,
+            disabledByDefault: btn.disabledByDefault,
             position: btn.position || 'top'
           })) || [],
         subitems: subsection.subitems.map((subitem) => ({
-          item: subitem.item,
+          name: subitem.name,
           completed: subitem.completed,
           input: subitem.input || null,
           button:
             subitem.button?.map((btn) => ({
               text: btn.text,
               action: btn.action,
-              disabled: btn.disabled,
+              disabledByDefault: btn.disabledByDefault,
               position: btn.position || 'top'
 
             })) || [],

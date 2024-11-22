@@ -9,56 +9,56 @@
           {
             "text": "Initialize GLEIF’s AIDs",
             "action": "init-gleif-aids",
-            "disabled": false
+            "disabledByDefault": false
           }
         ],
         "subitems": [
           {
-            "item": "External GAR 1’s AID",
+            "name": "External GAR 1’s AID",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             }
           },
           {
-            "item": "External GAR 2’s AID",
+            "name": "External GAR 2’s AID",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             }
           },
           {
-            "item": "GEDA",
+            "name": "GEDA",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             }
           },
           {
-            "item": "Internal GAR 1’s AID",
+            "name": "Internal GAR 1’s AID",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             }
           },
           {
-            "item": "Internal GAR 2’s AID",
+            "name": "Internal GAR 2’s AID",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             }
           },
           {
-            "item": "GIDA",
+            "name": "GIDA",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             }
           }
         ]
@@ -68,13 +68,13 @@
         "desc": "Your application should create 3 AIDs for QVI Authorized Representatives (QARs) in your QVI application.",
         "subitems": [
           {
-            "item": "I confirm that 3 AIDs for the QARs have been created.",
+            "name": "I confirm that 3 AIDs for the QARs have been created.",
             "completed": false,
             "button": [
               {
                 "text": "Confirm",
                 "action": "confirm-3-aids-created",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           }
@@ -87,56 +87,56 @@
           {
             "text": "Generate GLEIF’s OOBIs",
             "action": "generate-gleif-oobis",
-            "disabled": false
+            "disabledByDefault": false
           }
         ],
         "subitems": [
           {
-            "item": "External GAR 1’s OOBI",
+            "name": "External GAR 1’s OOBI",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             }
           },
           {
-            "item": "External GAR 2’s OOBI",
+            "name": "External GAR 2’s OOBI",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             }
           },
           {
-            "item": "GEDA’s OOBI",
+            "name": "GEDA’s OOBI",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             }
           },
           {
-            "item": "Internal GAR 1’s OOBI",
+            "name": "Internal GAR 1’s OOBI",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             }
           },
           {
-            "item": "Internal GAR 2’s OOBI",
+            "name": "Internal GAR 2’s OOBI",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             }
           },
           {
-            "item": "GIDA’s OOBI",
+            "name": "GIDA’s OOBI",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             }
           }
         ]
@@ -148,33 +148,33 @@
           {
             "text": "Resolve",
             "action": "resolve-qar-oobis",
-            "disabled": false,
+            "disabledByDefault": false,
             "position" : "bottom"
           }
         ],
         "subitems": [
           {
-            "item": "QAR 1’s OOBI",
+            "name": "QAR 1’s OOBI",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             }
           },
           {
-            "item": "QAR 2’s OOBI",
+            "name": "QAR 2’s OOBI",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             }
           },
           {
-            "item": "QAR 3’s OOBI",
+            "name": "QAR 3’s OOBI",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             }
           }
         ]
@@ -184,435 +184,435 @@
         "desc": "Generate challenges from the GARs to your QARs’ AIDs. Your application should respond to these challenges.",
         "subitems": [
           {
-            "item": "External GAR 1 to QAR 1",
+            "name": "External GAR 1 to QAR 1",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               {
                 "text": "Generate ",
                 "action": "challengeXGAR1toQAR1",
-                "disabled": false
+                "disabledByDefault": false
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveXGAR1toQAR1",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "External GAR 1 to QAR 2",
+            "name": "External GAR 1 to QAR 2",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               {
                 "text": "Generate ",
                 "action": "challengeXGAR1toQAR2",
-                "disabled": false
+                "disabledByDefault": false
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveXGAR1toQAR2",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "External GAR 1 to QAR 3",
+            "name": "External GAR 1 to QAR 3",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               {
                 "text": "Generate ",
                 "action": "challengeXGAR1toQAR3",
-                "disabled": false
+                "disabledByDefault": false
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveXGAR1toQAR3",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "External GAR 2 to QAR 1",
+            "name": "External GAR 2 to QAR 1",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               {
                 "text": "Generate ",
                 "action": "challengeXGAR2toQAR1",
-                "disabled": false
+                "disabledByDefault": false
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveXGAR2toQAR1",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "External GAR 2 to QAR 2",
+            "name": "External GAR 2 to QAR 2",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               {
                 "text": "Generate ",
                 "action": "challengeXGAR2toQAR2",
-                "disabled": false
+                "disabledByDefault": false
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveXGAR2toQAR2",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "External GAR 2 to QAR 3",
+            "name": "External GAR 2 to QAR 3",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               {
                 "text": "Generate ",
                 "action": "challengeXGAR2toQAR3",
-                "disabled": false
+                "disabledByDefault": false
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveXGAR2toQAR3",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "Internal GAR 1 to QAR 1",
+            "name": "Internal GAR 1 to QAR 1",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               {
                 "text": "Generate ",
                 "action": "challengeIGAR1toQAR1",
-                "disabled": false
+                "disabledByDefault": false
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveIGAR1toQAR1",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "Internal GAR 1 to QAR 2",
+            "name": "Internal GAR 1 to QAR 2",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               {
                 "text": "Generate ",
                 "action": "challengeIGAR1toQAR2",
-                "disabled": false
+                "disabledByDefault": false
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveIGAR1toQAR2",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "Internal GAR 1 to QAR 3",
+            "name": "Internal GAR 1 to QAR 3",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               {
                 "text": "Generate ",
                 "action": "challengeIGAR1toQAR3",
-                "disabled": false
+                "disabledByDefault": false
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveIGAR1toQAR3",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "Internal GAR 2 to QAR 1",
+            "name": "Internal GAR 2 to QAR 1",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               {
                 "text": "Generate ",
                 "action": "challengeIGAR2toQAR1",
-                "disabled": false
+                "disabledByDefault": false
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveIGAR2toQAR1",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "Internal GAR 2 to QAR 2",
+            "name": "Internal GAR 2 to QAR 2",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               {
                 "text": "Generate ",
                 "action": "challengeIGAR2toQAR2",
-                "disabled": false
+                "disabledByDefault": false
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveIGAR2toQAR2",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "Internal GAR 2 to QAR 3",
+            "name": "Internal GAR 2 to QAR 3",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               {
                 "text": "Generate ",
                 "action": "challengeIGAR2toQAR3",
-                "disabled": false
+                "disabledByDefault": false
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveIGAR2toQAR3",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "You AIDs should generate challenges to the GARs, and then check if they have responded.",
+            "name": "You AIDs should generate challenges to the GARs, and then check if they have responded.",
             "completed": false
           },
           {
-            "item": "QAR 1 to External GAR 1",
+            "name": "QAR 1 to External GAR 1",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             },
             "button": [
               {
                 "text": "Respond ",
                 "action": "challengeQAR1toXGAR1",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "QAR 2 to External GAR 1",
+            "name": "QAR 2 to External GAR 1",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             },
             "button": [
               {
                 "text": "Respond ",
                 "action": "challengeQAR2toXGAR1",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "QAR 3 to External GAR 1",
+            "name": "QAR 3 to External GAR 1",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             },
             "button": [
               {
                 "text": "Respond ",
                 "action": "challengeQAR3toXGAR1",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "QAR 1 to External GAR 2",
+            "name": "QAR 1 to External GAR 2",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             },
             "button": [
               {
                 "text": "Respond ",
                 "action": "challengeQAR1toXGAR2",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "QAR 2 to External GAR 2",
+            "name": "QAR 2 to External GAR 2",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             },
             "button": [
               {
                 "text": "Respond ",
                 "action": "challengeQAR2toXGAR2",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "QAR 3 to External GAR 2",
+            "name": "QAR 3 to External GAR 2",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             },
             "button": [
               {
                 "text": "Respond ",
                 "action": "challengeQAR3toXGAR2",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "QAR 1 to Internal GAR 1",
+            "name": "QAR 1 to Internal GAR 1",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             },
             "button": [
               {
                 "text": "Respond ",
                 "action": "challengeQAR1toIGAR1",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "QAR 2 to Internal GAR 1",
+            "name": "QAR 2 to Internal GAR 1",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             },
             "button": [
               {
                 "text": "Respond ",
                 "action": "challengeQAR2toIGAR1",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "QAR 3 to Internal GAR 1",
+            "name": "QAR 3 to Internal GAR 1",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             },
             "button": [
               {
                 "text": "Respond ",
                 "action": "challengeQAR3toIGAR1",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "QAR 1 to Internal GAR 2",
+            "name": "QAR 1 to Internal GAR 2",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             },
             "button": [
               {
                 "text": "Respond ",
                 "action": "challengeQAR1toIGAR2",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "QAR 2 to Internal GAR 2",
+            "name": "QAR 2 to Internal GAR 2",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             },
             "button": [
               {
                 "text": "Respond ",
                 "action": "challengeQAR2toIGAR2",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "QAR 3 to Internal GAR 2",
+            "name": "QAR 3 to Internal GAR 2",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": false
+              "disabledByDefault": false
             },
             "button": [
               {
                 "text": "Respond ",
                 "action": "challengeQAR3toIGAR2",
-                "disabled": false
+                "disabledByDefault": false
               }
             ]
           },
           {
-            "item": "I confirm that all challenges have been responded and approved.",
+            "name": "I confirm that all challenges have been responded and approved.",
             "completed": false,
             "button":[{
               "text" : "Confirm",
-              "disabled" : false,
+              "disabledByDefault" : false,
               "action": "challengeToGAR"
             }]
           }
@@ -623,19 +623,19 @@
         "desc":"Create a multisig AID from the three QARs’ AIDs. The multisig AID must be delegated by the GEDA.",
         "subitems":[
           {
-            "item":"GEDA",
+            "name":"GEDA",
             "completed": false,
             "input":{
               "value":"",
-              "disabled":true
+              "disabledByDefault":true
             }
           },
           {
-            "item":"I confirm that the QVI AID has been created with GEDA as the delegator.",
+            "name":"I confirm that the QVI AID has been created with GEDA as the delegator.",
             "completed": false,
             "button":[{
               "text":"Confirm",
-              "disabled":false,
+              "disabledByDefault":false,
               "action":"createdQVIAID"
             }]
           }
@@ -646,15 +646,15 @@
         "desc":"The GEDA approve the creation of the QVI AID.",
         "subitems":[
           {
-            "item":"QVI AID",
+            "name":"QVI AID",
             "completed": false,
             "input":{
               "value":"",
-              "disabled":true
+              "disabledByDefault":true
             },
             "button":[{
               "text":"Approve",
-              "disabled":false,
+              "disabledByDefault":false,
               "action":"aidQVI"
             }]
 
@@ -666,15 +666,15 @@
         "desc":"To get the QVI AID’s OOBI resolved:\n1. Your application should fetch the GEDA’s key event log (KEL) to see if it has approved the QVI AID creation.\n2. The QVI AID must approve the end point authorizations for all of its three agents.\n3. Generate the QVI AID’s OOBI",
         "subitems":[
           {
-            "item":"QVI AID’s OOBI",
+            "name":"QVI AID’s OOBI",
             "completed": false,
             "input":{
               "value":"",
-              "disabled":true
+              "disabledByDefault":true
             },
             "button":[{
               "text":"Resolve",
-              "disabled":false,
+              "disabledByDefault":false,
               "action":"oobiQVI"
             }]
 
@@ -691,11 +691,11 @@
         "desc": "Description for Sign Document",
         "subitems": [
           {
-            "item": "Step 1",
+            "name": "Step 1",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               { "text": "Start", "action": "start-sign-document-step1" },
@@ -726,11 +726,11 @@
         "desc": "Description for Sign Document",
         "subitems": [
           {
-            "item": "Step 1",
+            "name": "Step 1",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               { "text": "Start", "action": "start-sign-document-step1" },
@@ -761,11 +761,11 @@
         "desc": "Description for Sign Document",
         "subitems": [
           {
-            "item": "Step 1",
+            "name": "Step 1",
             "completed": false,
             "input": {
               "value": "",
-              "disabled": true
+              "disabledByDefault": true
             },
             "button": [
               { "text": "Start", "action": "start-sign-document-step1" },

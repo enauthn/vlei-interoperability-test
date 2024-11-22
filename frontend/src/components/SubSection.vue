@@ -14,7 +14,7 @@
           subsection.button[0].position === 'top'
         "
         class="submit-button"
-        :disabled="subsection.button[0].disabled || isLoading"
+        :disabled="subsection.button[0].disabledByDefault || isLoading"
         @click="btnSubSection(subsection)"
       >
         <span v-if="isLoading" class="loading-spinner"></span>
@@ -30,17 +30,17 @@
         v-for="(subitems, index) in subsection.subitems"
         :key="index"
       >
-        <label :for="subitems.item" class="input-label">
-          {{ subitems.item }}
+        <label :for="subitems.name" class="input-label">
+          {{ subitems.name }}
         </label>
 
         <input
           v-if="subitems.input"
           v-model="subitems.input.value"
-          :placeholder="subitems.item"
+          :placeholder="subitems.name"
           type="text"
-          :id="subitems.item"
-          :disabled="subitems.input.disabled"
+          :id="subitems.name"
+          :disabled="subitems.input.disabledByDefault"
           class="input-field"
         />
 
@@ -53,8 +53,8 @@
             :key="index"
             class="submit-button"
             :disabled="
-              (subitems.input?.value === '' && !subitems.input.disabled) ||
-              btn.disabled
+              (subitems.input?.value === '' && !subitems.input.disabledByDefault) ||
+              btn.disabledByDefault
             "
             @click="btnsubitems(subitems, btn)"
           >
@@ -71,7 +71,7 @@
           subsection.button[0].position === 'bottom'
         "
         class="submit-button bottom-left-button"
-        :disabled="subsection.button[0].disabled || isLoading"
+        :disabled="subsection.button[0].disabledByDefault || isLoading"
         @click="btnSubSection(subsection)"
         :hidden="
           subsection.button[0].position === 'bottom'
@@ -105,7 +105,7 @@ const btnSubSection = (subsection: Subsection) => {
 
   // 1.1 Initialize GEDA and GIDA
   if (subsection.button && subsection.button[0].action === "init-gleif-aids") {
-    subsection.button[0].disabled = true;
+    subsection.button[0].disabledByDefault = true;
 
     let hasError = false;
 
@@ -116,7 +116,7 @@ const btnSubSection = (subsection: Subsection) => {
       } else {
         hasError = true;
         errorMsg.value = "Please enter input for all required fields.";
-        subsection.button![0].disabled = false;
+        subsection.button![0].disabledByDefault = false;
       }
     });
 
@@ -134,7 +134,7 @@ const btnSubSection = (subsection: Subsection) => {
       subsection.button &&
       subsection.button[0].action === "resolve-qar-oobis"
     ) {
-      subsection.button[0].disabled = true;
+      subsection.button[0].disabledByDefault = true;
 
       let hasError = false;
 
@@ -145,7 +145,7 @@ const btnSubSection = (subsection: Subsection) => {
         } else {
           hasError = true;
           errorMsg.value = "Please enter input for all required fields.";
-          subsection.button![0].disabled = false;
+          subsection.button![0].disabledByDefault = false;
         }
       });
 
@@ -165,10 +165,10 @@ const btnsubitems = (
   btn: { text: string; action: string; disabled: boolean }
 ) => {
   if (btn) {
-    btn.disabled = true;
+    btn.disabledByDefault = true;
     console.log("Action triggered for subitems: ", btn.action);
     subitems.completed = true;
-    console.log(`${subitems.item} marked as completed.`);
+    console.log(`${subitems.name} marked as completed.`);
   } else {
     console.log("No action for subitems");
   }

@@ -1,17 +1,17 @@
 export interface Button {
   text: string;        
-  disabled: boolean;
+  disabledByDefault: boolean;
   action: string;    
   position?: string;      
 }
 
 export interface Input{
   value: string;
-  disabled:boolean;
+  disabledByDefault:boolean;
 }
 
 export interface Subitem {
-  item: string;         
+  name: string;         
   input: Input | null;   
   button?: Button[];    
   completed: boolean;   
