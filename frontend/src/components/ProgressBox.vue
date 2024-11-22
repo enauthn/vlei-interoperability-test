@@ -27,7 +27,7 @@ const sectionStatusClass = (section: Section) => {
   const allSubitems = section.subsections.flatMap(subsection => subsection.subsubsections || []);
 
   // Check if all subitems have the 'completed' property and if all or some are completed
-  const allCompleted = allSubitems.every(item => item?.completed);
+  const allCompleted = allSubitems.every(item => item?.completed || item?.completed === null);
   const anyCompleted = allSubitems.some(item => item?.completed);
 
   // Determine the class based on the completion state of subitems

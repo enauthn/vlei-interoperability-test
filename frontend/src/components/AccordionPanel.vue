@@ -1,17 +1,17 @@
 <template>
   <div class="accordion-wrapper">
     <div
-      v-for="(section, index) in sections"
-      :key="index"
+      v-for="(section, sectionIndex) in sections"
+      :key="sectionIndex"
       class="accordion-section"
     >
-      <div class="accordion-header" @click="toggleSection(index)">
+      <div class="accordion-header" @click="toggleSection(sectionIndex)">
         <span>
-          {{ index + 1 }}. {{ section.name }} ({{
+          {{ sectionIndex + 1 }}. {{ section.name }} ({{
             calculateCompleted(section)
           }}/{{ calculateTotal(section) }})
         </span>
-        <span :class="{ 'rotate-180': isActive(index) }">▼</span>
+        <span :class="{ 'rotate-180': isActive(sectionIndex) }">▼</span>
       </div>
 
       <Transition
@@ -21,12 +21,19 @@
         @before-leave="beforeLeave"
         @leave="leave"
       >
-        <div v-if="isActive(index)" class="accordion-content">
+        <div v-if="isActive(sectionIndex)" class="accordion-content">
           <ul class="mini-process-list">
-            <li v-for="(subsection, i) in section.subsections" :key="i">
+            <li
+              v-for="(subsection, subsectionIndex) in section.subsections"
+              :key="subsectionIndex"
+            >
               <SubSection
-                :parentNumber="`${index + 1}.${i + 1}`"
+                :parentNumber="`${sectionIndex + 1}.${subsectionIndex + 1}`"
                 :subsection="subsection"
+                :disabled="
+                  currentStepIndex !== `${sectionIndex}.${subsectionIndex}`
+                "
+                @complete="advanceStep(sectionIndex, subsectionIndex)"
               />
             </li>
           </ul>
@@ -41,11 +48,13 @@ import { ref, defineProps } from "vue";
 import SubSection from "./SubSection.vue";
 import { Section } from "../interfaces/Section";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{ sections: Section[] }>();
 
 // State for tracking the currently open section index
 const activeSection = ref<number | null>(null);
+
+// Current step in the format 'sectionIndex.subsectionIndex' (e.g., "0.0")
+const currentStepIndex = ref<string>("0.0");
 
 // Check if the section is active
 const isActive = (index: number) => activeSection.value === index;
@@ -59,20 +68,32 @@ const toggleSection = (index: number) => {
   }
 };
 
+// Advance the step when the current subsection is marked as completed
+const advanceStep = (sectionIndex: number, subsectionIndex: number) => {
+  const nextSubsectionIndex = subsectionIndex + 1;
+  const nextSectionIndex = sectionIndex + 1;
+
+  // Check if there's another subsection in the current section
+  if (props.sections[sectionIndex]?.subsections[nextSubsectionIndex]) {
+    currentStepIndex.value = `${sectionIndex}.${nextSubsectionIndex}`;
+  }
+  // Otherwise, move to the first subsection of the next section
+  else if (props.sections[nextSectionIndex]?.subsections[0]) {
+    currentStepIndex.value = `${nextSectionIndex}.0`;
+  }
+};
+
 // Calculate completed subsections in a section
 const calculateCompleted = (section: Section) => {
-  return section.subsections.filter(
-    (subsection) =>
-      subsection.subsubsections && subsection.subsubsections.every((item) => item.completed) // Safe check for subitem
+  return section.subsections.filter((subsection) =>
+    subsection.subsubsections.every((item) => item.completed === true || item.completed === null)
   ).length;
 };
 
 // Calculate total subsections in a section
-const calculateTotal = (section: Section) => {
-  return section.subsections.length;
-};
+const calculateTotal = (section: Section) => section.subsections.length;
 
-// Transition Hooks
+// Transition Hooks for accordion
 const beforeEnter = (el: Element) => {
   const element = el as HTMLElement;
   element.style.maxHeight = "0";

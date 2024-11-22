@@ -187,7 +187,7 @@
             "name": "External GAR 1 to QAR 1",
             "completed": false,
             "input": {
-              "value": "",
+              "value": null,
               "disabledByDefault": true
             },
             "button": [
@@ -207,7 +207,7 @@
             "name": "External GAR 1 to QAR 2",
             "completed": false,
             "input": {
-              "value": "",
+              "value": null,
               "disabledByDefault": true
             },
             "button": [
@@ -227,7 +227,7 @@
             "name": "External GAR 1 to QAR 3",
             "completed": false,
             "input": {
-              "value": "",
+              "value": null,
               "disabledByDefault": true
             },
             "button": [
@@ -247,7 +247,7 @@
             "name": "External GAR 2 to QAR 1",
             "completed": false,
             "input": {
-              "value": "",
+              "value": null,
               "disabledByDefault": true
             },
             "button": [
@@ -267,7 +267,7 @@
             "name": "External GAR 2 to QAR 2",
             "completed": false,
             "input": {
-              "value": "",
+              "value": null,
               "disabledByDefault": true
             },
             "button": [
@@ -287,7 +287,7 @@
             "name": "External GAR 2 to QAR 3",
             "completed": false,
             "input": {
-              "value": "",
+              "value": null,
               "disabledByDefault": true
             },
             "button": [
@@ -307,7 +307,7 @@
             "name": "Internal GAR 1 to QAR 1",
             "completed": false,
             "input": {
-              "value": "",
+              "value": null,
               "disabledByDefault": true
             },
             "button": [
@@ -327,7 +327,7 @@
             "name": "Internal GAR 1 to QAR 2",
             "completed": false,
             "input": {
-              "value": "",
+              "value": null,
               "disabledByDefault": true
             },
             "button": [
@@ -347,7 +347,7 @@
             "name": "Internal GAR 1 to QAR 3",
             "completed": false,
             "input": {
-              "value": "",
+              "value": null,
               "disabledByDefault": true
             },
             "button": [
@@ -367,7 +367,7 @@
             "name": "Internal GAR 2 to QAR 1",
             "completed": false,
             "input": {
-              "value": "",
+              "value": null,
               "disabledByDefault": true
             },
             "button": [
@@ -387,7 +387,7 @@
             "name": "Internal GAR 2 to QAR 2",
             "completed": false,
             "input": {
-              "value": "",
+              "value": null,
               "disabledByDefault": true
             },
             "button": [
@@ -407,7 +407,7 @@
             "name": "Internal GAR 2 to QAR 3",
             "completed": false,
             "input": {
-              "value": "",
+              "value": null,
               "disabledByDefault": true
             },
             "button": [
@@ -425,7 +425,7 @@
           },
           {
             "name": "You AIDs should generate challenges to the GARs, and then check if they have responded.",
-            "completed": false
+            "completed": null
           },
           {
             "name": "QAR 1 to External GAR 1",
@@ -624,7 +624,7 @@
         "subsubsections":[
           {
             "name":"GEDA",
-            "completed": false,
+            "completed": null,
             "input":{
               "value":"",
               "disabledByDefault":true
@@ -650,7 +650,7 @@
             "completed": false,
             "input":{
               "value":"",
-              "disabledByDefault":true
+              "disabledByDefault":false
             },
             "button":[{
               "text":"Approve",
@@ -670,7 +670,7 @@
             "completed": false,
             "input":{
               "value":"",
-              "disabledByDefault":true
+              "disabledByDefault":false
             },
             "button":[{
               "text":"Resolve",

@@ -14,7 +14,9 @@
           subsection.button[0].position === 'top'
         "
         class="submit-button"
-        :disabled="subsection.button[0].disabledByDefault || isLoading"
+        :disabled="
+          props.disabled || subsection.button[0].disabledByDefault || isLoading
+        "
         @click="btnSubSection(subsection)"
       >
         <span v-if="isLoading" class="loading-spinner"></span>
@@ -40,7 +42,7 @@
           :placeholder="subsubsection.name"
           type="text"
           :id="subsubsection.name"
-          :disabled="subsubsection.input.disabledByDefault"
+          :disabled="disabled || subsubsection.input.disabledByDefault"
           class="input-field"
         />
 
@@ -53,11 +55,13 @@
             :key="index"
             class="submit-button"
             :disabled="
+              disabled ||
+              btn.disabledByDefault ||
+              subsubsection.input?.value === '' ||
               (subsubsection.input?.value === '' &&
-                !subsubsection.input.disabledByDefault) ||
-              btn.disabledByDefault
+                subsubsection.input?.disabledByDefault)
             "
-            @click="btnSubSubSection(subsubsection , btn)"
+            @click="btnSubSubSection(subsubsection, btn)"
           >
             {{ btn.text }}
           </button>
@@ -72,7 +76,11 @@
             subsection.button[0].position === 'bottom'
           "
           class="submit-button bottom-left-button"
-          :disabled="subsection.button[0].disabledByDefault || isLoading"
+          :disabled="
+            props.disabled ||
+            subsection.button[0].disabledByDefault ||
+            isLoading
+          "
           @click="btnSubSection(subsection)"
           :hidden="subsection.button[0].position === 'bottom'"
         >
@@ -85,7 +93,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { defineProps } from "vue";
 import { Button, Subsection, SubSubsection } from "../interfaces/Section";
 
@@ -93,10 +101,27 @@ import { Button, Subsection, SubSubsection } from "../interfaces/Section";
 const props = defineProps<{
   parentNumber: string;
   subsection: Subsection;
+  disabled: boolean;
+}>();
+
+const emit = defineEmits<{
+  (e: "complete"): void;
 }>();
 
 const isLoading = ref(false);
 const errorMsg = ref("");
+
+watch(
+  () =>
+    props.subsection.subsubsections.every(
+      (subsub) => subsub.completed === true || subsub.completed === null
+    ), // Check if all completed values are true
+  (isCompleted) => {
+    if (isCompleted) {
+      emit("complete"); // Emit only when all completed values are true
+    }
+  }
+);
 
 const btnSubSection = (subsection: Subsection) => {
   isLoading.value = true;
@@ -166,12 +191,22 @@ const btnSubSection = (subsection: Subsection) => {
     default: {
       console.warn(`Unhandled action: ${action}`);
       isLoading.value = false;
+      subsection.subsubsections.forEach((subsubsection) => {
+        if (subsubsection.input) {
+          subsubsection.input.value = "123"; // Update with random string
+          subsubsection.completed = true;
+        } else {
+          errorMsg.value = "Please enter input for all required fields.";
+          subsection.button![0].disabledByDefault = false;
+        }
+      });
+
       break;
     }
   }
 };
 
-const btnSubSubSection = (subsubsection: SubSubsection , btn : Button) => {
+const btnSubSubSection = (subsubsection: SubSubsection, btn: Button) => {
   if (!subsubsection.button) {
     console.error("No button action provided.");
     return;
@@ -236,7 +271,9 @@ const btnSubSubSection = (subsubsection: SubSubsection , btn : Button) => {
     default: {
       console.warn(`Unhandled action: ${action}`);
       isLoading.value = false;
-      subsubsection.completed = true
+      btn.disabledByDefault = true;
+
+      subsubsection.completed = true;
 
       break;
     }

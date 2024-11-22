@@ -14,7 +14,7 @@ export interface SubSubsection {
   name: string;         
   input: Input | null;   
   button?: Button[];    
-  completed: boolean;   
+  completed: boolean | null;   
 }
 
 export interface Subsection {
