@@ -1,5 +1,5 @@
 <template>
-  <div class="accordion-wrapper">
+  <div class="accordion-wrapper" :class="{ disabled: props.isConnect }">
     <div
       v-for="(section, sectionIndex) in sections"
       :key="sectionIndex"
@@ -48,13 +48,10 @@ import { ref, defineProps } from "vue";
 import SubSection from "./SubSection.vue";
 import { Section } from "../interfaces/Section";
 
-const props = defineProps<{ sections: Section[] }>();
+const props = defineProps<{ sections: Section[]; isConnect: boolean }>();
 
 // State for tracking the currently open section index
 const activeSection = ref<number | null>(null);
-
-// Current step in the format 'sectionIndex.subsectionIndex' (e.g., "0.0")
-const currentStepIndex = ref<string>("0.0");
 
 // Check if the section is active
 const isActive = (index: number) => activeSection.value === index;
@@ -67,6 +64,9 @@ const toggleSection = (index: number) => {
     activeSection.value = index; // Open the clicked section
   }
 };
+
+// Current step in the format 'sectionIndex.subsectionIndex' (e.g., "0.0")
+const currentStepIndex = ref<string>(props.isConnect ? "0.0" : "-1");
 
 // Advance the step when the current subsection is marked as completed
 const advanceStep = (sectionIndex: number, subsectionIndex: number) => {
@@ -86,7 +86,9 @@ const advanceStep = (sectionIndex: number, subsectionIndex: number) => {
 // Calculate completed subsections in a section
 const calculateCompleted = (section: Section) => {
   return section.subsections.filter((subsection) =>
-    subsection.subsubsections.every((item) => item.completed === true || item.completed === null)
+    subsection.subsubsections.every(
+      (item) => item.completed === true || item.completed === null
+    )
   ).length;
 };
 
@@ -123,6 +125,11 @@ const leave = (el: Element) => {
   width: 100vw;
   max-width: 1280px;
   margin: 0 auto;
+}
+
+.accordion-wrapper.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .accordion-section {

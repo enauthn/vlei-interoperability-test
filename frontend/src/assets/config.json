@@ -149,7 +149,7 @@
             "text": "Resolve",
             "action": "resolve-qar-oobis",
             "disabledByDefault": false,
-            "position" : "bottom"
+            "position": "bottom"
           }
         ],
         "subsubsections": [
@@ -610,74 +610,80 @@
           {
             "name": "I confirm that all challenges have been responded and approved.",
             "completed": false,
-            "button":[{
-              "text" : "Confirm",
-              "disabledByDefault" : false,
-              "action": "challengeToGAR"
-            }]
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": false,
+                "action": "challengeToGAR"
+              }
+            ]
           }
         ]
       },
       {
-        "name":"Create a QVI AID",
-        "desc":"Create a multisig AID from the three QARs’ AIDs. The multisig AID must be delegated by the GEDA.",
-        "subsubsections":[
+        "name": "Create a QVI AID",
+        "desc": "Create a multisig AID from the three QARs’ AIDs. The multisig AID must be delegated by the GEDA.",
+        "subsubsections": [
           {
-            "name":"GEDA",
+            "name": "GEDA",
             "completed": null,
-            "input":{
-              "value":"",
-              "disabledByDefault":true
+            "input": {
+              "value": "",
+              "disabledByDefault": true
             }
           },
           {
-            "name":"I confirm that the QVI AID has been created with GEDA as the delegator.",
+            "name": "I confirm that the QVI AID has been created with GEDA as the delegator.",
             "completed": false,
-            "button":[{
-              "text":"Confirm",
-              "disabledByDefault":false,
-              "action":"createdQVIAID"
-            }]
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": false,
+                "action": "createdQVIAID"
+              }
+            ]
           }
         ]
       },
       {
-        "name":"Approve delegation of the QVI AID",
-        "desc":"The GEDA approve the creation of the QVI AID.",
-        "subsubsections":[
+        "name": "Approve delegation of the QVI AID",
+        "desc": "The GEDA approve the creation of the QVI AID.",
+        "subsubsections": [
           {
-            "name":"QVI AID",
+            "name": "QVI AID",
             "completed": false,
-            "input":{
-              "value":"",
-              "disabledByDefault":false
+            "input": {
+              "value": "",
+              "disabledByDefault": false
             },
-            "button":[{
-              "text":"Approve",
-              "disabledByDefault":false,
-              "action":"aidQVI"
-            }]
-
+            "button": [
+              {
+                "text": "Approve",
+                "disabledByDefault": false,
+                "action": "aidQVI"
+              }
+            ]
           }
         ]
       },
       {
-        "name":"Resolve the QVI AID’s OOBI",
-        "desc":"To get the QVI AID’s OOBI resolved:\n1. Your application should fetch the GEDA’s key event log (KEL) to see if it has approved the QVI AID creation.\n2. The QVI AID must approve the end point authorizations for all of its three agents.\n3. Generate the QVI AID’s OOBI",
-        "subsubsections":[
+        "name": "Resolve the QVI AID’s OOBI",
+        "desc": "To get the QVI AID’s OOBI resolved:\n1. Your application should fetch the GEDA’s key event log (KEL) to see if it has approved the QVI AID creation.\n2. The QVI AID must approve the end point authorizations for all of its three agents.\n3. Generate the QVI AID’s OOBI",
+        "subsubsections": [
           {
-            "name":"QVI AID’s OOBI",
+            "name": "QVI AID’s OOBI",
             "completed": false,
-            "input":{
-              "value":"",
-              "disabledByDefault":false
+            "input": {
+              "value": "",
+              "disabledByDefault": false
             },
-            "button":[{
-              "text":"Resolve",
-              "disabledByDefault":false,
-              "action":"oobiQVI"
-            }]
-
+            "button": [
+              {
+                "text": "Resolve",
+                "disabledByDefault": false,
+                "action": "oobiQVI"
+              }
+            ]
           }
         ]
       }
@@ -687,32 +693,245 @@
     "name": "Issuance",
     "subsections": [
       {
-        "name": "Sign Document",
-        "desc": "Description for Sign Document",
+        "name": "Issue QVI vLEI Credential",
+        "desc": "GEDA issues and grants a QVI vLEI credential to the QVI AID. You application should perform IPEX admit on the granted credential. You should then confirms that your QVI AID has successfully received the credential.",
         "subsubsections": [
           {
-            "name": "Step 1",
+            "name": "QVI vLEI credential’s digest",
             "completed": false,
             "input": {
-              "value": "",
+              "value": null,
               "disabledByDefault": true
             },
             "button": [
-              { "text": "Start", "action": "start-sign-document-step1" },
               {
-                "text": "Cancel",
-                "action": "cancel-sign-document-step1",
-                "color": "secondary"
+                "text": "Issue",
+                "action": "credDigestQVI",
+                "disabledByDefault": false,
+                "position": "start"
+              }
+            ]
+          },
+          {
+            "name": "I confirm that the QVI AID has received the QVI vLEI credential.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": false,
+                "action": "confirm-cred-digest-qvi"
               }
             ]
           }
-        ],
-        "button": [
-          { "text": "Start", "action": "start-sign-document" },
+        ]
+      },
+      {
+        "name": "Issue LE vLEI Credential",
+        "desc": "Your application and QARs should issue and grant a legal entity (LE) vLEI credential to GIDA. Your application must collect a sufficient number of signatures from QARs for the issuance to be valid.",
+        "subsubsections": [
           {
-            "text": "Cancel",
-            "action": "cancel-sign-document",
-            "color": "secondary"
+            "name": "Please, provide the grant message’s digest for your credential below.",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Submit",
+                "action": "grantMsgDigestLE",
+                "disabledByDefault": false,
+                "position": "end"
+              }
+            ]
+          },
+          {
+            "name": "LE vLEI credential’s digest",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Admit",
+                "disabledByDefault": false,
+                "action": "credDigestLE",
+                "position": "start"
+              }
+            ]
+          },
+          {
+            "name": "After the issuance of LE vLEI credential is successful, you must report the credential to the vLEI reporting API. The process can be completed by resolving and granting the credential to the following OOBI.",
+            "completed": null
+          },
+          {
+            "name": "vLEI Reporting API’s OOBI",
+            "completed": null,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            }
+          },
+          {
+            "name": "Check if the vLEI reporting API has received the LE vLEI credential below.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Check",
+                "disabledByDefault": false,
+                "action": "oobiVLEIReporting"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Issue OOR vLEI Credential",
+        "desc": "To issue an official organization role (OOR) vLEI credential, GIDA first issues and grant an OOR authorization (AUTH) vLEI credential for the internal GAR 1 to the QVI AID.",
+        "subsubsections": [
+          {
+            "name": "OOR AUTH vLEI credential’s digest",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Issue",
+                "disabledByDefault": false,
+                "action": "credDigestOORAUTH",
+                "position": "start"
+              }
+            ]
+          },
+          {
+            "name": "I confirm that the QVI AID has received the OOR AUTH vLEI credential.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": false,
+                "action": "confirm-cred-digest-oor-auth"
+              }
+            ]
+          },
+          {
+            "name": "After the OOR Auth vLEI credential has been received by the QVI AID, you may issue and grant an OOR vLEI credential to the internal GAR 1. Please, provide the grant message’s digest for your credential below.",
+            "completed": null
+          },
+          {
+            "name": "",
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Submit",
+                "disabledByDefault": false,
+                "action": "grantMsgDigestOOR"
+              }
+            ]
+          },
+          {
+            "name": "OOR vLEI credential’s digest",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Admit",
+                "disabledByDefault": false,
+                "action": "credDigestOOR",
+                "position": "start"
+              }
+            ]
+          },
+          {
+            "name": "After the issuance of OOR vLEI credential is successful, you must report the credential to the vLEI reporting API.",
+            "completed": null
+          },
+          {
+            "name": "Check if the vLEI reporting API has received the OOR vLEI credential below.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Check",
+                "disabledByDefault": false,
+                "action": "check-cred-digest-oor"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Issue ECR vLEI Credential",
+        "desc": "To issue an engagement context role (ECR) vLEI credential, GIDA first issues and grant an ECR AUTH vLEI credential for the internal GAR 2 to the QVI AID.",
+        "subsubsections": [
+          {
+            "name": "ECR AUTH vLEI credential’s digest",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Issue",
+                "disabledByDefault": false,
+                "action": "credDigestECRAUTH",
+                "position": "start"
+              }
+            ]
+          },
+          {
+            "name": "I confirm that the QVI AID has received the ECR AUTH vLEI credential.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": false,
+                "action": "confirm-cred-digest-ecr-auth"
+              }
+            ]
+          },
+          {
+            "name": "After the ECR Auth vLEI credential has been received by the QVI AID, you may issue and grant an ECR vLEI credential to the internal GAR 2. Please, provide the grant message’s digest for your credential below.",
+            "completed": null
+          },
+          {
+            "name": "",
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Submit",
+                "disabledByDefault": false,
+                "action": "grantMsgDigestECR"
+              }
+            ]
+          },
+          {
+            "name": "ECR vLEI credential’s digest",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Admit",
+                "disabledByDefault": false,
+                "action": "credDigestECR",
+                "position": "start"
+              }
+            ]
           }
         ]
       }
@@ -722,32 +941,52 @@
     "name": "Rotation",
     "subsections": [
       {
-        "name": "Sign Document",
-        "desc": "Description for Sign Document",
+        "name": "Rotate the QVI AID",
+        "desc": "Your application should perform key rotation on the QVI AID, collecting a sufficient number of signatures from the QARs’ AIDs. Once the rotation is performed, please put the digest of the delegated rotation key event “drt” and its sequence number below. The GEDA will then approve the rotation.",
+        "button": [
+          {
+            "text": "Approve",
+            "disabledByDefault": false,
+            "action": "approve-rotate-qvi-aid",
+            "position": "bottom"
+          }
+        ],
         "subsubsections": [
           {
-            "name": "Step 1",
+            "name": "Rotation event’s digest",
             "completed": false,
             "input": {
               "value": "",
-              "disabledByDefault": true
-            },
+              "disabledByDefault": false
+            }
+          },
+          {
+            "name": "Rotation event’s sequence number",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            }
+          }
+        ]
+      },
+      {
+        "name": "Confirm GEDA’s Key",
+        "subsubsections": [
+          {
+            "name": "After the GEDA has approved the delegated rotation event, you shoud confirm that the GEDA’s key event has been updated with an interaction event anchoring the QVI AID (“i”), the delegated rotation event (“d”), and its sequence number (“s”).",
+            "completed": null
+          },
+          {
+            "name": "I confirm that the QVI AID’s rotation has been approved by the GEDA.",
+            "completed": false,
             "button": [
-              { "text": "Start", "action": "start-sign-document-step1" },
               {
-                "text": "Cancel",
-                "action": "cancel-sign-document-step1",
-                "color": "secondary"
+                "text": "Confirm",
+                "disabledByDefault": false,
+                "action": "confirm-rotate-qvi-aid"
               }
             ]
-          }
-        ],
-        "button": [
-          { "text": "Start", "action": "start-sign-document" },
-          {
-            "text": "Cancel",
-            "action": "cancel-sign-document",
-            "color": "secondary"
           }
         ]
       }
@@ -757,32 +996,123 @@
     "name": "Revocation",
     "subsections": [
       {
-        "name": "Sign Document",
-        "desc": "Description for Sign Document",
+        "name": "Revoke the Issued ECR vLEI Credential",
+        "desc": "To revoke the ECR vLEI credential that has been issued in the previous section. First, the GIDA revokes the ECR AUTH vLEI credential.",
         "subsubsections": [
           {
-            "name": "Step 1",
+            "name": "Key event’s digest of the revocation",
             "completed": false,
             "input": {
-              "value": "",
+              "value": null,
               "disabledByDefault": true
             },
             "button": [
-              { "text": "Start", "action": "start-sign-document-step1" },
               {
-                "text": "Cancel",
-                "action": "cancel-sign-document-step1",
-                "color": "secondary"
+                "text": "Revoke",
+                "action": "revocationDigestECR",
+                "disabledByDefault": false,
+                "position": "start"
+              }
+            ]
+          },
+          {
+            "name": "You should confirm that the GIDA has revoked the ECR AUTH vLEI credential by fetching an update from the GIDA’s KEL.",
+            "completed": null
+          },
+          {
+            "name": "I confirm that the ECR AUTH vLEI credential has been revoked by the GIDA.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": false,
+                "action": "confirm-revoke-digest-ecr"
+              }
+            ]
+          },
+          {
+            "name": "You application may revoke the ECR vLEI credential where a sufficient number of signatures from your QARs must be collected to generate valid revocation.",
+            "completed": null
+          },
+          {
+            "name": "Check if the revocation can be observed by GLEIF.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Check",
+                "disabledByDefault": false,
+                "action": "check-revoke-digest-ecr"
               }
             ]
           }
-        ],
-        "button": [
-          { "text": "Start", "action": "start-sign-document" },
+        ]
+      },
+      {
+        "name": "Revoke the Issued OOR vLEI Credential",
+        "desc": "To revoke the OOR vLEI credential that has been issued in the previous section. First, the GIDA revokes the OOR AUTH vLEI credential.",
+        "subsubsections": [
           {
-            "text": "Cancel",
-            "action": "cancel-sign-document",
-            "color": "secondary"
+            "name": "Revocation event’s digest",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Revoke",
+                "action": "revocationDigestOOR",
+                "disabledByDefault": false,
+                "position": "start"
+              }
+            ]
+          },
+          {
+            "name": "You should confirm that the GIDA has revoked the OOR AUTH vLEI credential by fetching an update from the GIDA’s KEL.",
+            "completed": null
+          },
+          {
+            "name": "I confirm that the OOR AUTH vLEI credential has been revoked by the GIDA.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": false,
+                "action": "confirm-revoke-digest-oor"
+              }
+            ]
+          },
+          {
+            "name": "You application may revoke the OOR vLEI credential where a sufficient number of signatures from your QARs must be collected to generate valid revocation. After the revocation, you must report the revocation to the vLEI reporting API.",
+            "completed": null
+          },
+          {
+            "name": "Check if the vLEI reporting API has received the revocation of the OOR vLEI credential below.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Check",
+                "disabledByDefault": false,
+                "action": "check-revoke-digest-oor"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Revoke the Issued LE vLEI Credential",
+        "desc": "After the revocation of the OOR and ECR vLEI credentials, you may revoke the LE vLEI credential where a sufficient number of signatures from your QARs must be collected to generate valid revocation. After the revocation, you must report the revocation to the vLEI reporting API.",
+        "subsubsections": [
+          {
+            "name": "Check if the vLEI reporting API has received the revocation of the LE vLEI credential below.",
+            "completed":false,
+            "button":[{
+              "text":"Check",
+              "disabledByDefault":false,
+              "action":"check-revoke-doc"
+            }
+
+            ]
           }
         ]
       }

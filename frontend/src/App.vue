@@ -14,12 +14,15 @@
   </div>
 
   <div class="form-progress-wrapper">
-    <PasscodeInstanceUrlForm />
+    <PasscodeInstanceUrlForm
+      :isConnect="isConnect"
+      @update:isConnect="(value) => (isConnect = value)"
+    />
     <ProgressBox :sections="currentState" />
   </div>
 
   <div class="accordion-wrapper">
-    <Accordion :sections="currentState" />
+    <Accordion :sections="currentState" :isConnect="!isConnect" />
   </div>
 </template>
 
@@ -28,12 +31,14 @@ import PasscodeInstanceUrlForm from "./components/PasscodeInstanceUrlForm.vue";
 import ProgressBox from "./components/ProgressBox.vue";
 import Accordion from "./components/AccordionPanel.vue";
 
-import { Section } from "./interfaces/Section";
+import { Button, Section } from "./interfaces/Section";
 import config from "./assets/config.json";
 
 import { onMounted, ref } from "vue";
 
 const currentState = ref<Section[]>([]);
+
+const isConnect = ref(false);
 
 onMounted(() => {
   currentState.value = Object.keys(config).map((sectionKey) => {
@@ -55,7 +60,7 @@ onMounted(() => {
           completed: subsubsection.completed,
           input: subsubsection.input || null,
           button:
-            subsubsection.button?.map((btn) => ({
+            subsubsection.button?.map((btn: Button) => ({
               text: btn.text,
               action: btn.action,
               disabledByDefault: btn.disabledByDefault,

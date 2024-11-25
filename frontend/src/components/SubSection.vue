@@ -32,10 +32,35 @@
         v-for="(subsubsection, index) in subsection.subsubsections"
         :key="index"
       >
-        <label :for="subsubsection.name" class="input-label">
+        <!-- Start Buttons -->
+        <div class="button-group button-start">
+          <button
+            v-for="(btn, btnIndex) in getStartButtons[index]"
+            :key="btnIndex"
+            class="submit-button"
+            :disabled="
+              disabled ||
+              btn.disabledByDefault ||
+              subsubsection.input?.value === '' ||
+              (subsubsection.input?.value === '' &&
+                subsubsection.input?.disabledByDefault)
+            "
+            @click="btnSubSubSection(subsubsection, btn)"
+          >
+            {{ btn.text }}
+          </button>
+        </div>
+
+        <!-- Label -->
+        <label
+          v-if="subsubsection.name !== ''"
+          :for="subsubsection.name"
+          class="input-label"
+        >
           {{ subsubsection.name }}
         </label>
 
+        <!-- Input Field -->
         <input
           v-if="subsubsection.input"
           v-model="subsubsection.input.value"
@@ -46,13 +71,11 @@
           class="input-field"
         />
 
-        <div
-          v-if="subsubsection.button && subsubsection.button.length > 0"
-          class="button-group"
-        >
+        <!-- End Buttons -->
+        <div class="button-group">
           <button
-            v-for="(btn, index) in subsubsection.button"
-            :key="index"
+            v-for="(btn, btnIndex) in getEndButtons[index]"
+            :key="btnIndex"
             class="submit-button"
             :disabled="
               disabled ||
@@ -67,6 +90,7 @@
           </button>
         </div>
       </div>
+
       <div class="input-row">
         <button
           v-if="
@@ -96,6 +120,7 @@
 import { ref, watch } from "vue";
 import { defineProps } from "vue";
 import { Button, Subsection, SubSubsection } from "../interfaces/Section";
+import { computed } from "vue";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{
@@ -103,6 +128,21 @@ const props = defineProps<{
   subsection: Subsection;
   disabled: boolean;
 }>();
+
+// Define computed properties for filtered buttons
+const getStartButtons = computed(() =>
+  props.subsection.subsubsections.map((subsubsection) =>
+    subsubsection.button!.filter((btn) => btn.position === "start")
+  )
+);
+
+const getEndButtons = computed(() =>
+  props.subsection.subsubsections.map((subsubsection) =>
+    subsubsection.button!.filter(
+      (btn) => btn.position === "end" || btn.position === "top"
+    )
+  )
+);
 
 const emit = defineEmits<{
   (e: "complete"): void;
@@ -302,9 +342,9 @@ const btnSubSubSection = (subsubsection: SubSubsection, btn: Button) => {
 }
 
 .subsection-description {
-  font-size: 0.9rem;
+  font-size: 1rem;
   white-space: pre-line;
-  color: #666;
+  font-weight: 400;
 }
 
 .submit-button {
@@ -365,9 +405,11 @@ const btnSubSubSection = (subsubsection: SubSubsection, btn: Button) => {
 }
 
 .input-label {
-  min-width: 200px;
+  min-width: 220px;
+  max-width: fit-content;
   margin-right: 1rem;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 400;
   flex-shrink: 0;
 }
 
@@ -385,6 +427,12 @@ const btnSubSubSection = (subsubsection: SubSubsection, btn: Button) => {
 }
 .bottom-left-button {
   margin-left: auto;
-  margin-right: 32%;
+  margin-right: 30.25%;
+}
+
+.button-start {
+  .submit-button {
+    margin-right: 20px;
+  }
 }
 </style>
