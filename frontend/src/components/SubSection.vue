@@ -1,5 +1,10 @@
 <template>
   <div class="subsection-wrapper">
+    <PopupMsg
+      :popupData="popUpMsg"
+      :visible="popupVisible"
+      @close="popupVisible = false"
+    />
     <div class="subsection-header">
       <span>{{ parentNumber }} {{ subsection.name }}</span>
       <div v-if="subsection.desc" class="subsection-description">
@@ -22,8 +27,6 @@
         <span v-if="isLoading" class="loading-spinner"></span>
         {{ isLoading ? "Loading..." : subsection.button[0].text }}
       </button>
-
-      <span v-if="errorMsg" class="error-msg">* {{ errorMsg }}</span>
     </div>
 
     <div class="subsection-content">
@@ -121,6 +124,7 @@ import { ref, watch } from "vue";
 import { defineProps } from "vue";
 import { Button, Subsection, SubSubsection } from "../interfaces/Section";
 import { computed } from "vue";
+import PopupMsg from "./PopupMsg.vue";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{
@@ -149,7 +153,18 @@ const emit = defineEmits<{
 }>();
 
 const isLoading = ref(false);
-const errorMsg = ref("");
+
+const popUpMsg = ref<{
+  type: "success" | "error" | "info" | "warning";
+  header: string;
+  desc: string;
+}>({
+  type: "success", // Default type
+  header: "",
+  desc: "",
+});
+
+const popupVisible = ref(false);
 
 watch(
   () =>
@@ -165,7 +180,6 @@ watch(
 
 const btnSubSection = (subsection: Subsection) => {
   isLoading.value = true;
-  errorMsg.value = ""; // Reset error message
 
   if (!subsection.button || subsection.button.length === 0) {
     console.error("No button action found in subsection.");
@@ -179,23 +193,20 @@ const btnSubSection = (subsection: Subsection) => {
     case "init-gleif-aids": {
       subsection.button[0].disabledByDefault = true;
 
-      let hasError = false;
-
       subsection.subsubsections.forEach((subsubsection) => {
         if (subsubsection.input) {
           subsubsection.input.value = "123"; // Update with random string
           subsubsection.completed = true;
         } else {
-          hasError = true;
-          errorMsg.value = "Please enter input for all required fields.";
+          popUpMsg.value = {
+            type: "error",
+            header: "Error",
+            desc: "Please enter input for all required fields.",
+          };
+          popupVisible.value = true;
           subsection.button![0].disabledByDefault = false;
         }
       });
-
-      if (!hasError) {
-        console.log("Updated subsubsection with random strings.");
-        errorMsg.value = ""; // Clear error if no issues
-      }
 
       isLoading.value = false;
       break;
@@ -205,23 +216,20 @@ const btnSubSection = (subsection: Subsection) => {
       setTimeout(() => {
         subsection.button![0].disabledByDefault = true;
 
-        let hasError = false;
-
         subsection.subsubsections.forEach((subsubsection) => {
           if (subsubsection.input && subsubsection.input.value !== "") {
             subsubsection.input.value = "456"; // Update with random string
             subsubsection.completed = true;
           } else {
-            hasError = true;
-            errorMsg.value = "Please enter input for all required fields.";
+            popUpMsg.value = {
+              type: "error",
+              header: "Error",
+              desc: "Please enter input for all required fields.",
+            };
+            popupVisible.value = true;
             subsection.button![0].disabledByDefault = false;
           }
         });
-
-        if (!hasError) {
-          console.log("Updated subsubsection with random strings.");
-          errorMsg.value = ""; // Clear error if no issues
-        }
 
         isLoading.value = false;
       }, 1000); // Simulate async action
@@ -236,7 +244,6 @@ const btnSubSection = (subsection: Subsection) => {
           subsubsection.input.value = "123"; // Update with random string
           subsubsection.completed = true;
         } else {
-          errorMsg.value = "Please enter input for all required fields.";
           subsection.button![0].disabledByDefault = false;
         }
       });
@@ -254,20 +261,53 @@ const btnSubSubSection = (subsubsection: SubSubsection, btn: Button) => {
 
   // Reset states
   isLoading.value = true;
-  errorMsg.value = "";
 
   const action = btn.action;
 
+  // Find current button index and next button
+  const currentButtonIndex = subsubsection.button.indexOf(btn);
+  const nextButton = subsubsection.button[currentButtonIndex + 1];
+
+  // Find current subsubsection index
+  const currentSubsectionIndex =
+    props.subsection.subsubsections.indexOf(subsubsection);
+
+  // Helper function to skip invalid subsubsections and find the next valid one
+  const getNextValidSubsubsection = (index: number) => {
+    let nextSubsection = props.subsection.subsubsections[index + 1];
+
+    // Skip invalid or empty subsubsections (completed === null or no buttons)
+    while (
+      nextSubsection &&
+      (nextSubsection.completed === null || !nextSubsection.button?.length)
+    ) {
+      nextSubsection = props.subsection.subsubsections[++index + 1]; // Move to the next subsubsection
+    }
+
+    return nextSubsection;
+  };
+
+  // Get the next valid subsubsection
+  const nextSubsection = getNextValidSubsubsection(currentSubsectionIndex);
+
   switch (action) {
     case "confirm-3-aids-created": {
-      btn.disabledByDefault = true;
+      btn.disabledByDefault = true; // Disable the current button
       const checkAPI = true;
+
       if (checkAPI) {
         subsubsection.completed = true;
         console.log(`${subsubsection.name} marked as completed.`);
+
+        if (nextButton) {
+          // Enable the next button in the same subsubsection
+          nextButton.disabledByDefault = false;
+        } else if (nextSubsection && nextSubsection.button!.length > 0) {
+          // Move to the next subsubsection and enable its first button
+          nextSubsection.button![0].disabledByDefault = false;
+        }
       } else {
-        errorMsg.value = "Input value is required to mark as completed.";
-        btn.disabledByDefault = false;
+        btn.disabledByDefault = false; // Re-enable the current button on failure
       }
 
       isLoading.value = false;
@@ -275,15 +315,22 @@ const btnSubSubSection = (subsubsection: SubSubsection, btn: Button) => {
     }
 
     case "reset-input": {
-      btn.disabledByDefault = true;
+      btn.disabledByDefault = true; // Disable the current button
 
       if (subsubsection.input) {
         subsubsection.input.value = ""; // Reset input value
         subsubsection.completed = false;
         console.log(`${subsubsection.name} input has been reset.`);
+
+        if (nextButton) {
+          // Enable the next button in the same subsubsection
+          nextButton.disabledByDefault = false;
+        } else if (nextSubsection && nextSubsection.button!.length > 0) {
+          // Move to the next subsubsection and enable its first button
+          nextSubsection.button![0].disabledByDefault = false;
+        }
       } else {
-        errorMsg.value = "Cannot reset input; no input field found.";
-        btn.disabledByDefault = false;
+        btn.disabledByDefault = false; // Re-enable the current button on failure
       }
 
       isLoading.value = false;
@@ -291,16 +338,23 @@ const btnSubSubSection = (subsubsection: SubSubsection, btn: Button) => {
     }
 
     case "simulate-async-action": {
-      btn.disabledByDefault = true;
+      btn.disabledByDefault = true; // Disable the current button
       console.log(`Simulating async action for ${subsubsection.name}...`);
 
       setTimeout(() => {
         if (subsubsection.input && subsubsection.input.value) {
           subsubsection.completed = true;
           console.log(`Async action completed for ${subsubsection.name}.`);
+
+          if (nextButton) {
+            // Enable the next button in the same subsubsection
+            nextButton.disabledByDefault = false;
+          } else if (nextSubsection && nextSubsection.button!.length > 0) {
+            // Move to the next subsubsection and enable its first button
+            nextSubsection.button![0].disabledByDefault = false;
+          }
         } else {
-          errorMsg.value = "Input value is required for this async action.";
-          subsubsection.button![0].disabledByDefault = false;
+          btn.disabledByDefault = false; // Re-enable the current button on failure
         }
 
         isLoading.value = false;
@@ -311,9 +365,17 @@ const btnSubSubSection = (subsubsection: SubSubsection, btn: Button) => {
     default: {
       console.warn(`Unhandled action: ${action}`);
       isLoading.value = false;
-      btn.disabledByDefault = true;
+      btn.disabledByDefault = true; // Disable the current button
 
       subsubsection.completed = true;
+
+      if (nextButton) {
+        // Enable the next button in the same subsubsection
+        nextButton.disabledByDefault = false;
+      } else if (nextSubsection && nextSubsection.button!.length > 0) {
+        // Move to the next subsubsection and enable its first button
+        nextSubsection.button![0].disabledByDefault = false;
+      }
 
       break;
     }
@@ -384,12 +446,6 @@ const btnSubSubSection = (subsubsection: SubSubsection, btn: Button) => {
   to {
     transform: rotate(360deg);
   }
-}
-
-.error-msg {
-  color: red;
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
 }
 
 .subsection-content {

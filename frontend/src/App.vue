@@ -49,7 +49,7 @@ onMounted(() => {
         name: subsection.name,
         desc: subsection.desc,
         button:
-          subsection.button?.map((btn) => ({
+          subsection.button?.map((btn : Button) => ({
             text: btn.text,
             action: btn.action,
             disabledByDefault: btn.disabledByDefault,
@@ -94,7 +94,7 @@ onMounted(() => {
   }
 
   span {
-    margin-top: 10px;
+    margin-top: 20px;
     text-align: start;
     font-size: 18px;
   }

@@ -199,7 +199,7 @@
               {
                 "text": "Appprove ",
                 "action": "ApproveXGAR1toQAR1",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -214,12 +214,12 @@
               {
                 "text": "Generate ",
                 "action": "challengeXGAR1toQAR2",
-                "disabledByDefault": false
+                "disabledByDefault": true
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveXGAR1toQAR2",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -234,12 +234,12 @@
               {
                 "text": "Generate ",
                 "action": "challengeXGAR1toQAR3",
-                "disabledByDefault": false
+                "disabledByDefault": true
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveXGAR1toQAR3",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -254,12 +254,12 @@
               {
                 "text": "Generate ",
                 "action": "challengeXGAR2toQAR1",
-                "disabledByDefault": false
+                "disabledByDefault": true
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveXGAR2toQAR1",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -274,12 +274,12 @@
               {
                 "text": "Generate ",
                 "action": "challengeXGAR2toQAR2",
-                "disabledByDefault": false
+                "disabledByDefault": true
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveXGAR2toQAR2",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -294,12 +294,12 @@
               {
                 "text": "Generate ",
                 "action": "challengeXGAR2toQAR3",
-                "disabledByDefault": false
+                "disabledByDefault": true
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveXGAR2toQAR3",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -314,12 +314,12 @@
               {
                 "text": "Generate ",
                 "action": "challengeIGAR1toQAR1",
-                "disabledByDefault": false
+                "disabledByDefault": true
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveIGAR1toQAR1",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -334,12 +334,12 @@
               {
                 "text": "Generate ",
                 "action": "challengeIGAR1toQAR2",
-                "disabledByDefault": false
+                "disabledByDefault": true
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveIGAR1toQAR2",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -354,12 +354,12 @@
               {
                 "text": "Generate ",
                 "action": "challengeIGAR1toQAR3",
-                "disabledByDefault": false
+                "disabledByDefault": true
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveIGAR1toQAR3",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -374,12 +374,12 @@
               {
                 "text": "Generate ",
                 "action": "challengeIGAR2toQAR1",
-                "disabledByDefault": false
+                "disabledByDefault": true
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveIGAR2toQAR1",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -394,12 +394,12 @@
               {
                 "text": "Generate ",
                 "action": "challengeIGAR2toQAR2",
-                "disabledByDefault": false
+                "disabledByDefault": true
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveIGAR2toQAR2",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -414,17 +414,17 @@
               {
                 "text": "Generate ",
                 "action": "challengeIGAR2toQAR3",
-                "disabledByDefault": false
+                "disabledByDefault": true
               },
               {
                 "text": "Appprove ",
                 "action": "ApproveIGAR2toQAR3",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
           {
-            "name": "You AIDs should generate challenges to the GARs, and then check if they have responded.",
+            "name": "Your AIDs should generate challenges to the GARs, and then check if they have responded.",
             "completed": null
           },
           {
@@ -438,7 +438,7 @@
               {
                 "text": "Respond ",
                 "action": "challengeQAR1toXGAR1",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -453,7 +453,7 @@
               {
                 "text": "Respond ",
                 "action": "challengeQAR2toXGAR1",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -468,7 +468,7 @@
               {
                 "text": "Respond ",
                 "action": "challengeQAR3toXGAR1",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -483,7 +483,7 @@
               {
                 "text": "Respond ",
                 "action": "challengeQAR1toXGAR2",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -498,7 +498,7 @@
               {
                 "text": "Respond ",
                 "action": "challengeQAR2toXGAR2",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -513,7 +513,7 @@
               {
                 "text": "Respond ",
                 "action": "challengeQAR3toXGAR2",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -528,7 +528,7 @@
               {
                 "text": "Respond ",
                 "action": "challengeQAR1toIGAR1",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -543,7 +543,7 @@
               {
                 "text": "Respond ",
                 "action": "challengeQAR2toIGAR1",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -558,7 +558,7 @@
               {
                 "text": "Respond ",
                 "action": "challengeQAR3toIGAR1",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -573,7 +573,7 @@
               {
                 "text": "Respond ",
                 "action": "challengeQAR1toIGAR2",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -588,7 +588,7 @@
               {
                 "text": "Respond ",
                 "action": "challengeQAR2toIGAR2",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -603,7 +603,7 @@
               {
                 "text": "Respond ",
                 "action": "challengeQAR3toIGAR2",
-                "disabledByDefault": false
+                "disabledByDefault": true
               }
             ]
           },
@@ -613,7 +613,7 @@
             "button": [
               {
                 "text": "Confirm",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "challengeToGAR"
               }
             ]
@@ -718,7 +718,7 @@
             "button": [
               {
                 "text": "Confirm",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "confirm-cred-digest-qvi"
               }
             ]
@@ -755,7 +755,7 @@
             "button": [
               {
                 "text": "Admit",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "credDigestLE",
                 "position": "start"
               }
@@ -779,7 +779,7 @@
             "button": [
               {
                 "text": "Check",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "oobiVLEIReporting"
               }
             ]
@@ -812,7 +812,7 @@
             "button": [
               {
                 "text": "Confirm",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "confirm-cred-digest-oor-auth"
               }
             ]
@@ -830,7 +830,7 @@
             "button": [
               {
                 "text": "Submit",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "grantMsgDigestOOR"
               }
             ]
@@ -845,7 +845,7 @@
             "button": [
               {
                 "text": "Admit",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "credDigestOOR",
                 "position": "start"
               }
@@ -861,7 +861,7 @@
             "button": [
               {
                 "text": "Check",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "check-cred-digest-oor"
               }
             ]
@@ -894,7 +894,7 @@
             "button": [
               {
                 "text": "Confirm",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "confirm-cred-digest-ecr-auth"
               }
             ]
@@ -912,7 +912,7 @@
             "button": [
               {
                 "text": "Submit",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "grantMsgDigestECR"
               }
             ]
@@ -927,7 +927,7 @@
             "button": [
               {
                 "text": "Admit",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "credDigestECR",
                 "position": "start"
               }
@@ -1025,7 +1025,7 @@
             "button": [
               {
                 "text": "Confirm",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "confirm-revoke-digest-ecr"
               }
             ]
@@ -1040,7 +1040,7 @@
             "button": [
               {
                 "text": "Check",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "check-revoke-digest-ecr"
               }
             ]
@@ -1077,7 +1077,7 @@
             "button": [
               {
                 "text": "Confirm",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "confirm-revoke-digest-oor"
               }
             ]
@@ -1092,7 +1092,7 @@
             "button": [
               {
                 "text": "Check",
-                "disabledByDefault": false,
+                "disabledByDefault": true,
                 "action": "check-revoke-digest-oor"
               }
             ]

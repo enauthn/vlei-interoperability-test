@@ -1,7 +1,12 @@
 <template>
   <form class="form-container" @submit.prevent="onConnect">
+    <PopupMsg
+      :popupData="popUpMsg"
+      :visible="popupVisible"
+      @close="popupVisible = false"
+    />
     <div class="input-container">
-      <label for="passcode">Passcode:</label>
+      <label for="passcode">API Key:</label>
       <input
         id="passcode"
         type="text"
@@ -21,7 +26,6 @@
       />
     </div>
     <div class="connect-btn-container">
-      <label v-if="errMsg" class="error-msg">{{ errMsg }}</label>
       <button type="submit" :disabled="!isFormValid || isLoading">
         <span v-if="isLoading" class="spinner"></span>
         <span>{{ isLoading ? "Connecting..." : "Connect" }}</span>
@@ -32,11 +36,22 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-
+import PopupMsg from "./PopupMsg.vue";
 const passcode = ref("");
 const instanceUrl = ref("");
 const isLoading = ref(false);
-const errMsg = ref(""); // Error message state
+
+const popUpMsg = ref<{
+  type: "success" | "error" | "info" | "warning";
+  header: string;
+  desc: string;
+}>({
+  type: "success", // Default type
+  header: "",
+  desc: "",
+});
+
+const popupVisible = ref(false);
 
 // Emit event for connection status
 const emit = defineEmits<{
@@ -51,14 +66,17 @@ const isFormValid = computed(() => {
 // Handle form submission
 const onConnect = () => {
   isLoading.value = true; // Set loading state
-  errMsg.value = ""; // Clear any previous error messages
   setTimeout(() => {
     const isValid = validateInput(passcode.value, instanceUrl.value);
     if (isValid) {
       emit("update:isConnect", true);
-      errMsg.value = ""; // Clear error message on success
     } else {
-      errMsg.value = "Failed to Connect. Please check your inputs.";
+      popUpMsg.value = {
+        type: "error",
+        header: "Connection Error",
+        desc: "Failed to Connect. Please check your inputs.",
+      };
+      popupVisible.value = true;
     }
     isLoading.value = false; // Reset loading state
   }, 2000); // Simulate a delay (e.g., network request)
