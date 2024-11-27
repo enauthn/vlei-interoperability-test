@@ -13,6 +13,7 @@
         v-model="passcode"
         placeholder="Enter passcode"
         required
+        :disabled="isLoading || connectState == 'Connected'"
       />
     </div>
     <div class="input-container">
@@ -23,12 +24,16 @@
         v-model="instanceUrl"
         placeholder="Enter Instance URL"
         required
+        :disabled="isLoading || connectState == 'Connected'"
       />
     </div>
     <div class="connect-btn-container">
-      <button type="submit" :disabled="!isFormValid || isLoading">
+      <button
+        type="submit"
+        :disabled="!isFormValid || isLoading || connectState == 'Connected'"
+      >
         <span v-if="isLoading" class="spinner"></span>
-        <span>{{ isLoading ? "Connecting..." : "Connect" }}</span>
+        <span>{{ connectState }}</span>
       </button>
     </div>
   </form>
@@ -40,7 +45,7 @@ import PopupMsg from "./PopupMsg.vue";
 const passcode = ref("");
 const instanceUrl = ref("");
 const isLoading = ref(false);
-
+const connectState = ref("Connect");
 const popUpMsg = ref<{
   type: "success" | "error" | "info" | "warning";
   header: string;
@@ -66,11 +71,14 @@ const isFormValid = computed(() => {
 // Handle form submission
 const onConnect = () => {
   isLoading.value = true; // Set loading state
+  connectState.value = "Connecting...";
   setTimeout(() => {
     const isValid = validateInput(passcode.value, instanceUrl.value);
     if (isValid) {
       emit("update:isConnect", true);
+      connectState.value = "Connected";
     } else {
+      connectState.value = "Connect";
       popUpMsg.value = {
         type: "error",
         header: "Connection Error",
