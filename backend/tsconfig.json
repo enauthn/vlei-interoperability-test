@@ -19,6 +19,7 @@
       "@services/*": ["src/services/*"],
       "@middlewares/*": ["src/middlewares/*"],
       "@types/*": ["src/types/*"],
+      "@store/*": ["src/store/*"],
       "@utils/*": ["src/utils/*"]
     }
   },

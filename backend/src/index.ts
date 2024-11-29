@@ -1,11 +1,8 @@
 import express from 'express';
 import establishRouter from './routes/establishment';
-import { sessionMiddleware } from './middlewares/sessionMiddleware';
-
 const app = express();
 
 app.use(express.json());
-app.use(sessionMiddleware);
 
 const port = 3000;
 
