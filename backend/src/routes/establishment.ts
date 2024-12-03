@@ -1,9 +1,13 @@
 import { Router } from "express";
-import { isCorrectState } from '../utils/validateUtils';
 import { runKliCommand } from '../utils/kliUtils';
+import { isCorrectState } from '../utils/validateUtils';
+import { authMiddleware } from '../middlewares/authMiddleware'
 import { useStateMachine, resetStateMachine } from '../store/useStateMachine';
 
 const router = Router();
+
+// Protect all routes with the authMiddleware
+router.use(authMiddleware);
 
 // POST: Initialize GEDA and GIDA
 router.post('/initialize', (req: any, res: any) => {

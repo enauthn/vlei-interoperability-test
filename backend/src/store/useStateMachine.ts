@@ -1,4 +1,4 @@
-// /store/stateMachine.ts
+// src/store/stateMachine.ts
 import { StateMachine } from '../types/stateMachine';
 
 // initialized the state machine
