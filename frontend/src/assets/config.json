@@ -192,12 +192,12 @@
             },
             "button": [
               {
-                "text": "Generate ",
+                "text": "Generate",
                 "action": "challengeXGAR1toQAR1",
                 "disabledByDefault": false
               },
               {
-                "text": "Appprove ",
+                "text": "Approve",
                 "action": "ApproveXGAR1toQAR1",
                 "disabledByDefault": true
               }
@@ -212,12 +212,12 @@
             },
             "button": [
               {
-                "text": "Generate ",
+                "text": "Generate",
                 "action": "challengeXGAR1toQAR2",
                 "disabledByDefault": true
               },
               {
-                "text": "Appprove ",
+                "text": "Approve",
                 "action": "ApproveXGAR1toQAR2",
                 "disabledByDefault": true
               }
@@ -232,12 +232,12 @@
             },
             "button": [
               {
-                "text": "Generate ",
+                "text": "Generate",
                 "action": "challengeXGAR1toQAR3",
                 "disabledByDefault": true
               },
               {
-                "text": "Appprove ",
+                "text": "Approve",
                 "action": "ApproveXGAR1toQAR3",
                 "disabledByDefault": true
               }
@@ -252,12 +252,12 @@
             },
             "button": [
               {
-                "text": "Generate ",
+                "text": "Generate",
                 "action": "challengeXGAR2toQAR1",
                 "disabledByDefault": true
               },
               {
-                "text": "Appprove ",
+                "text": "Approve",
                 "action": "ApproveXGAR2toQAR1",
                 "disabledByDefault": true
               }
@@ -272,12 +272,12 @@
             },
             "button": [
               {
-                "text": "Generate ",
+                "text": "Generate",
                 "action": "challengeXGAR2toQAR2",
                 "disabledByDefault": true
               },
               {
-                "text": "Appprove ",
+                "text": "Approve",
                 "action": "ApproveXGAR2toQAR2",
                 "disabledByDefault": true
               }
@@ -292,12 +292,12 @@
             },
             "button": [
               {
-                "text": "Generate ",
+                "text": "Generate",
                 "action": "challengeXGAR2toQAR3",
                 "disabledByDefault": true
               },
               {
-                "text": "Appprove ",
+                "text": "Approve",
                 "action": "ApproveXGAR2toQAR3",
                 "disabledByDefault": true
               }
@@ -312,12 +312,12 @@
             },
             "button": [
               {
-                "text": "Generate ",
+                "text": "Generate",
                 "action": "challengeIGAR1toQAR1",
                 "disabledByDefault": true
               },
               {
-                "text": "Appprove ",
+                "text": "Approve",
                 "action": "ApproveIGAR1toQAR1",
                 "disabledByDefault": true
               }
@@ -332,12 +332,12 @@
             },
             "button": [
               {
-                "text": "Generate ",
+                "text": "Generate",
                 "action": "challengeIGAR1toQAR2",
                 "disabledByDefault": true
               },
               {
-                "text": "Appprove ",
+                "text": "Approve",
                 "action": "ApproveIGAR1toQAR2",
                 "disabledByDefault": true
               }
@@ -352,12 +352,12 @@
             },
             "button": [
               {
-                "text": "Generate ",
+                "text": "Generate",
                 "action": "challengeIGAR1toQAR3",
                 "disabledByDefault": true
               },
               {
-                "text": "Appprove ",
+                "text": "Approve",
                 "action": "ApproveIGAR1toQAR3",
                 "disabledByDefault": true
               }
@@ -372,12 +372,12 @@
             },
             "button": [
               {
-                "text": "Generate ",
+                "text": "Generate",
                 "action": "challengeIGAR2toQAR1",
                 "disabledByDefault": true
               },
               {
-                "text": "Appprove ",
+                "text": "Approve",
                 "action": "ApproveIGAR2toQAR1",
                 "disabledByDefault": true
               }
@@ -392,12 +392,12 @@
             },
             "button": [
               {
-                "text": "Generate ",
+                "text": "Generate",
                 "action": "challengeIGAR2toQAR2",
                 "disabledByDefault": true
               },
               {
-                "text": "Appprove ",
+                "text": "Approve",
                 "action": "ApproveIGAR2toQAR2",
                 "disabledByDefault": true
               }
@@ -412,12 +412,12 @@
             },
             "button": [
               {
-                "text": "Generate ",
+                "text": "Generate",
                 "action": "challengeIGAR2toQAR3",
                 "disabledByDefault": true
               },
               {
-                "text": "Appprove ",
+                "text": "Approve",
                 "action": "ApproveIGAR2toQAR3",
                 "disabledByDefault": true
               }
@@ -646,8 +646,8 @@
         ]
       },
       {
-        "name": "Approve delegation of the QVI AID",
-        "desc": "The GEDA approve the creation of the QVI AID.",
+        "name": "Approvedelegation of the QVI AID",
+        "desc": "The GEDA Approvethe creation of the QVI AID.",
         "subsubsections": [
           {
             "name": "QVI AID",
@@ -668,7 +668,7 @@
       },
       {
         "name": "Resolve the QVI AID’s OOBI",
-        "desc": "To get the QVI AID’s OOBI resolved:\n1. Your application should fetch the GEDA’s key event log (KEL) to see if it has approved the QVI AID creation.\n2. The QVI AID must approve the end point authorizations for all of its three agents.\n3. Generate the QVI AID’s OOBI",
+        "desc": "To get the QVI AID’s OOBI resolved:\n1. Your application should fetch the GEDA’s key event log (KEL) to see if it has approved the QVI AID creation.\n2. The QVI AID must Approvethe end point authorizations for all of its three agents.\n3. Generate the QVI AID’s OOBI",
         "subsubsections": [
           {
             "name": "QVI AID’s OOBI",
@@ -942,7 +942,7 @@
     "subsections": [
       {
         "name": "Rotate the QVI AID",
-        "desc": "Your application should perform key rotation on the QVI AID, collecting a sufficient number of signatures from the QARs’ AIDs. Once the rotation is performed, please put the digest of the delegated rotation key event “drt” and its sequence number below. The GEDA will then approve the rotation.",
+        "desc": "Your application should perform key rotation on the QVI AID, collecting a sufficient number of signatures from the QARs’ AIDs. Once the rotation is performed, please put the digest of the delegated rotation key event “drt” and its sequence number below. The GEDA will then Approvethe rotation.",
         "button": [
           {
             "text": "Approve",

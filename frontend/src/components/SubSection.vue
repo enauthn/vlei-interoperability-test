@@ -76,21 +76,35 @@
 
         <!-- End Buttons -->
         <div class="button-group">
-          <button
+          <div
+            class="sub-button-group"
             v-for="(btn, btnIndex) in getEndButtons[index]"
-            :key="btnIndex"
-            class="submit-button"
-            :disabled="
-              disabled ||
-              btn.disabledByDefault ||
-              subsubsection.input?.value === '' ||
-              (subsubsection.input?.value === '' &&
-                subsubsection.input?.disabledByDefault)
-            "
-            @click="btnSubSubSection(subsubsection, btn)"
+            :key="'subsubsection-' + btnIndex"
           >
-            {{ btn.text }}
-          </button>
+            <button
+              :key="btnIndex"
+              class="submit-button submit-button-check"
+              :disabled="
+                disabled ||
+                btn.disabledByDefault ||
+                subsubsection.input?.value === '' ||
+                (subsubsection.input?.value === '' &&
+                  subsubsection.input?.disabledByDefault)
+              "
+              @click="btnSubSubSection(subsubsection, btn)"
+            >
+              {{ btn.text }}
+            </button>
+            <font-awesome-icon
+              v-if="
+                (btn.text === 'Check' || btn.text === 'Approve') &&
+                subsubsection.completed
+              "
+              :key="btnIndex"
+              class="popup-icon"
+              icon="fa-solid fa-circle-check"
+            />
+          </div>
         </div>
       </div>
 
@@ -366,8 +380,9 @@ const btnSubSubSection = (subsubsection: SubSubsection, btn: Button) => {
       console.warn(`Unhandled action: ${action}`);
       isLoading.value = false;
       btn.disabledByDefault = true; // Disable the current button
-
-      subsubsection.completed = true;
+      if (btn.text !== "Generate") {
+        subsubsection.completed = true;
+      }
 
       if (nextButton) {
         // Enable the next button in the same subsubsection
@@ -419,6 +434,10 @@ const btnSubSubSection = (subsubsection: SubSubsection, btn: Button) => {
   align-self: flex-start;
   display: flex;
   align-items: center;
+}
+
+.submit-button-check {
+  margin: auto;
 }
 
 .submit-button:hover {
@@ -481,6 +500,11 @@ const btnSubSubSection = (subsubsection: SubSubsection, btn: Button) => {
   display: flex;
   gap: 0.5rem;
 }
+.sub-button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
 .bottom-left-button {
   margin-left: auto;
   margin-right: 30.25%;
@@ -490,5 +514,11 @@ const btnSubSubSection = (subsubsection: SubSubsection, btn: Button) => {
   .submit-button {
     margin-right: 20px;
   }
+}
+
+.popup-icon {
+  margin: auto;
+  font-size: 2.3rem;
+  color: rgb(15, 235, 15);
 }
 </style>
