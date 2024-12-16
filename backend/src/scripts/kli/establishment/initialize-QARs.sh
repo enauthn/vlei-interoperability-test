@@ -6,15 +6,14 @@ initialize_and_incept() {
     local alias=$2
 
     kli init --name "$name" --nopasscode --config-dir "${KERI_SCRIPT_DIR}" --config-file demo-witness-oobis
-    kli incept --name "$name" --alias "$alias" --file "${KERI_DEMO_SCRIPT_DIR}/data/aid-incept.json" #gar repo
-    # kli ends add --name "$name" --alias "$alias" --eid BLskRTInXnMxWaGqcpSyMgo0nYbalW99cGZESrz3zapM --role mailbox
+    kli incept --name "$name" --alias "$alias" --file "${KERI_DEMO_SCRIPT_DIR}/data/aid-incept.json"
+    kli ends add --name "$name" --alias "$alias" --eid BLskRTInXnMxWaGqcpSyMgo0nYbalW99cGZESrz3zapM --role mailbox
 }
 
 # Initialize and incept AIDs
-initialize_and_incept "ex_gar1" "ex_gar1"
-initialize_and_incept "ex_gar2" "ex_gar2"
-initialize_and_incept "in_gar1" "in_gar1"
-initialize_and_incept "in_gar2" "in_gar2"
+initialize_and_incept "qar1" "qar1"
+initialize_and_incept "qar2" "qar2"
+initialize_and_incept "qar3" "qar3"
 
 # Retrieve and display AID status
 echo "Getting AID status..."
