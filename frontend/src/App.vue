@@ -14,12 +14,15 @@
   </div>
 
   <div class="form-progress-wrapper">
-    <PasscodeInstanceUrlForm />
+    <PasscodeInstanceUrlForm
+      :isConnect="isConnect"
+      @update:isConnect="(value) => (isConnect = value)"
+    />
     <ProgressBox :sections="currentState" />
   </div>
 
   <div class="accordion-wrapper">
-    <Accordion :sections="currentState" />
+    <Accordion :sections="currentState" :isConnect="!isConnect" />
   </div>
 </template>
 
@@ -28,40 +31,46 @@ import PasscodeInstanceUrlForm from "./components/PasscodeInstanceUrlForm.vue";
 import ProgressBox from "./components/ProgressBox.vue";
 import Accordion from "./components/AccordionPanel.vue";
 
-import { Section } from "./interfaces/Section";
-import langData from './assets/lang/en.json';
+import { Button, Section } from "./interfaces/Section";
+import config from "./assets/config.json";
 
 import { onMounted, ref } from "vue";
 
 const currentState = ref<Section[]>([]);
 
+const isConnect = ref(false);
+
 onMounted(() => {
-  currentState.value = Object.keys(langData).map(sectionKey => {
-    const section = langData[sectionKey as keyof typeof langData];
+  currentState.value = Object.keys(config).map((sectionKey) => {
+    const section = config[sectionKey as keyof typeof config];
     return {
       name: section.name,
-      subsections: section.subsections.map(subsection => ({
+      subsections: section.subsections.map((subsection) => ({
         name: subsection.name,
         desc: subsection.desc,
-        button: subsection.button?.map(btn => ({
-          text: btn.text,
-          action: btn.action,
-        })) || [],
-        subitem: subsection.subitems.map(subitem => ({
-          item: subitem.item,
-          completed: subitem.completed,
-          inputValue: subitem.inputValue != null ? subitem.inputValue : null, // Treat undefined or null as null
-          button: subitem.button?.map(btn => ({
+        button:
+          subsection.button?.map((btn : Button) => ({
             text: btn.text,
             action: btn.action,
-          })),
-        })) || [],
+            disabledByDefault: btn.disabledByDefault,
+            position: btn.position || "top",
+          })) || [],
+        subsubsections: subsection.subsubsections.map((subsubsection) => ({
+          name: subsubsection.name,
+          completed: subsubsection.completed,
+          input: subsubsection.input || null,
+          button:
+            subsubsection.button?.map((btn: Button) => ({
+              text: btn.text,
+              action: btn.action,
+              disabledByDefault: btn.disabledByDefault,
+              position: btn.position || "top",
+            })) || [],
+        })),
       })),
     };
   });
 });
-
-
 </script>
 
 <style scoped>
@@ -85,7 +94,7 @@ onMounted(() => {
   }
 
   span {
-    margin-top: 10px;
+    margin-top: 20px;
     text-align: start;
     font-size: 18px;
   }

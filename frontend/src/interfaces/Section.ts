@@ -1,20 +1,27 @@
 export interface Button {
-  text: string;         
-  action?: string;          
+  text: string;        
+  disabledByDefault: boolean;
+  action: string;    
+  position?: string;      
 }
 
-export interface Subitem {
-  item: string;         
-  inputValue: string | null;   
+export interface Input{
+  value: string;
+  disabledByDefault:boolean;
+}
+
+export interface SubSubsection {
+  name: string;         
+  input: Input | null;   
   button?: Button[];    
-  completed: boolean;   
+  completed: boolean | null;   
 }
 
 export interface Subsection {
   name: string;
   desc: string;         
   button?: Button[];    
-  subitem: Subitem[];   
+  subsubsections: SubSubsection[];   
 }
 
 export interface Section {

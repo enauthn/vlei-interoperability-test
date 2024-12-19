@@ -1,0 +1,1121 @@
+{
+  "Establishment": {
+    "name": "Establishment",
+    "subsections": [
+      {
+        "name": "Initialize GEDA and GIDA",
+        "desc": "Initialize GLEIF External Delegated AID (GEDA) and GLEIF Internal Delegated AID (GIDA) that consist of two internal and two external GLEIF Authorized Representatives (GARs), respectively.",
+        "button": [
+          {
+            "text": "Initialize GLEIF’s AIDs",
+            "action": "init-gleif-aids",
+            "disabledByDefault": false
+          }
+        ],
+        "subsubsections": [
+          {
+            "name": "External GAR 1’s AID",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": true
+            }
+          },
+          {
+            "name": "External GAR 2’s AID",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": true
+            }
+          },
+          {
+            "name": "GEDA",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": true
+            }
+          },
+          {
+            "name": "Internal GAR 1’s AID",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": true
+            }
+          },
+          {
+            "name": "Internal GAR 2’s AID",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": true
+            }
+          },
+          {
+            "name": "GIDA",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": true
+            }
+          }
+        ]
+      },
+      {
+        "name": "Initialize QARs’ AID",
+        "desc": "Your application should create 3 AIDs for QVI Authorized Representatives (QARs) in your QVI application.",
+        "subsubsections": [
+          {
+            "name": "I confirm that 3 AIDs for the QARs have been created.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Confirm",
+                "action": "confirm-3-aids-created",
+                "disabledByDefault": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Resolve GLEIF’s OOBIs",
+        "desc": "Generate Out-of-band Introductions (OOBIs) of GARs, GEDA, and GIDA. Your application’s AIDs should resolve these OOBIs.",
+        "button": [
+          {
+            "text": "Generate GLEIF’s OOBIs",
+            "action": "generate-gleif-oobis",
+            "disabledByDefault": false
+          }
+        ],
+        "subsubsections": [
+          {
+            "name": "External GAR 1’s OOBI",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": true
+            }
+          },
+          {
+            "name": "External GAR 2’s OOBI",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": true
+            }
+          },
+          {
+            "name": "GEDA’s OOBI",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": true
+            }
+          },
+          {
+            "name": "Internal GAR 1’s OOBI",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": true
+            }
+          },
+          {
+            "name": "Internal GAR 2’s OOBI",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": true
+            }
+          },
+          {
+            "name": "GIDA’s OOBI",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": true
+            }
+          }
+        ]
+      },
+      {
+        "name": "Resolve QARs’ OOBIs",
+        "desc": "Generate OOBIs of your QARs’ AID and put them below. They will be resolved by the GARs.",
+        "button": [
+          {
+            "text": "Resolve",
+            "action": "resolve-qar-oobis",
+            "disabledByDefault": false,
+            "position": "bottom"
+          }
+        ],
+        "subsubsections": [
+          {
+            "name": "QAR 1’s OOBI",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            }
+          },
+          {
+            "name": "QAR 2’s OOBI",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            }
+          },
+          {
+            "name": "QAR 3’s OOBI",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            }
+          }
+        ]
+      },
+      {
+        "name": "Challenges and responses",
+        "desc": "Generate challenges from the GARs to your QARs’ AIDs. Your application should respond to these challenges.",
+        "subsubsections": [
+          {
+            "name": "External GAR 1 to QAR 1",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Generate",
+                "action": "challengeXGAR1toQAR1",
+                "disabledByDefault": false
+              },
+              {
+                "text": "Approve",
+                "action": "ApproveXGAR1toQAR1",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "External GAR 1 to QAR 2",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Generate",
+                "action": "challengeXGAR1toQAR2",
+                "disabledByDefault": true
+              },
+              {
+                "text": "Approve",
+                "action": "ApproveXGAR1toQAR2",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "External GAR 1 to QAR 3",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Generate",
+                "action": "challengeXGAR1toQAR3",
+                "disabledByDefault": true
+              },
+              {
+                "text": "Approve",
+                "action": "ApproveXGAR1toQAR3",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "External GAR 2 to QAR 1",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Generate",
+                "action": "challengeXGAR2toQAR1",
+                "disabledByDefault": true
+              },
+              {
+                "text": "Approve",
+                "action": "ApproveXGAR2toQAR1",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "External GAR 2 to QAR 2",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Generate",
+                "action": "challengeXGAR2toQAR2",
+                "disabledByDefault": true
+              },
+              {
+                "text": "Approve",
+                "action": "ApproveXGAR2toQAR2",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "External GAR 2 to QAR 3",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Generate",
+                "action": "challengeXGAR2toQAR3",
+                "disabledByDefault": true
+              },
+              {
+                "text": "Approve",
+                "action": "ApproveXGAR2toQAR3",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "Internal GAR 1 to QAR 1",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Generate",
+                "action": "challengeIGAR1toQAR1",
+                "disabledByDefault": true
+              },
+              {
+                "text": "Approve",
+                "action": "ApproveIGAR1toQAR1",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "Internal GAR 1 to QAR 2",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Generate",
+                "action": "challengeIGAR1toQAR2",
+                "disabledByDefault": true
+              },
+              {
+                "text": "Approve",
+                "action": "ApproveIGAR1toQAR2",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "Internal GAR 1 to QAR 3",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Generate",
+                "action": "challengeIGAR1toQAR3",
+                "disabledByDefault": true
+              },
+              {
+                "text": "Approve",
+                "action": "ApproveIGAR1toQAR3",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "Internal GAR 2 to QAR 1",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Generate",
+                "action": "challengeIGAR2toQAR1",
+                "disabledByDefault": true
+              },
+              {
+                "text": "Approve",
+                "action": "ApproveIGAR2toQAR1",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "Internal GAR 2 to QAR 2",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Generate",
+                "action": "challengeIGAR2toQAR2",
+                "disabledByDefault": true
+              },
+              {
+                "text": "Approve",
+                "action": "ApproveIGAR2toQAR2",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "Internal GAR 2 to QAR 3",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Generate",
+                "action": "challengeIGAR2toQAR3",
+                "disabledByDefault": true
+              },
+              {
+                "text": "Approve",
+                "action": "ApproveIGAR2toQAR3",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "Your AIDs should generate challenges to the GARs, and then check if they have responded.",
+            "completed": null
+          },
+          {
+            "name": "QAR 1 to External GAR 1",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Respond ",
+                "action": "challengeQAR1toXGAR1",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "QAR 2 to External GAR 1",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Respond ",
+                "action": "challengeQAR2toXGAR1",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "QAR 3 to External GAR 1",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Respond ",
+                "action": "challengeQAR3toXGAR1",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "QAR 1 to External GAR 2",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Respond ",
+                "action": "challengeQAR1toXGAR2",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "QAR 2 to External GAR 2",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Respond ",
+                "action": "challengeQAR2toXGAR2",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "QAR 3 to External GAR 2",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Respond ",
+                "action": "challengeQAR3toXGAR2",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "QAR 1 to Internal GAR 1",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Respond ",
+                "action": "challengeQAR1toIGAR1",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "QAR 2 to Internal GAR 1",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Respond ",
+                "action": "challengeQAR2toIGAR1",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "QAR 3 to Internal GAR 1",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Respond ",
+                "action": "challengeQAR3toIGAR1",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "QAR 1 to Internal GAR 2",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Respond ",
+                "action": "challengeQAR1toIGAR2",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "QAR 2 to Internal GAR 2",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Respond ",
+                "action": "challengeQAR2toIGAR2",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "QAR 3 to Internal GAR 2",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Respond ",
+                "action": "challengeQAR3toIGAR2",
+                "disabledByDefault": true
+              }
+            ]
+          },
+          {
+            "name": "I confirm that all challenges have been responded and approved.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": true,
+                "action": "challengeToGAR"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Create a QVI AID",
+        "desc": "Create a multisig AID from the three QARs’ AIDs. The multisig AID must be delegated by the GEDA.",
+        "subsubsections": [
+          {
+            "name": "GEDA",
+            "completed": null,
+            "input": {
+              "value": "",
+              "disabledByDefault": true
+            }
+          },
+          {
+            "name": "I confirm that the QVI AID has been created with GEDA as the delegator.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": false,
+                "action": "createdQVIAID"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Approvedelegation of the QVI AID",
+        "desc": "The GEDA Approvethe creation of the QVI AID.",
+        "subsubsections": [
+          {
+            "name": "QVI AID",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Approve",
+                "disabledByDefault": false,
+                "action": "aidQVI"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Resolve the QVI AID’s OOBI",
+        "desc": "To get the QVI AID’s OOBI resolved:\n1. Your application should fetch the GEDA’s key event log (KEL) to see if it has approved the QVI AID creation.\n2. The QVI AID must Approvethe end point authorizations for all of its three agents.\n3. Generate the QVI AID’s OOBI",
+        "subsubsections": [
+          {
+            "name": "QVI AID’s OOBI",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Resolve",
+                "disabledByDefault": false,
+                "action": "oobiQVI"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Issuance": {
+    "name": "Issuance",
+    "subsections": [
+      {
+        "name": "Issue QVI vLEI Credential",
+        "desc": "GEDA issues and grants a QVI vLEI credential to the QVI AID. You application should perform IPEX admit on the granted credential. You should then confirms that your QVI AID has successfully received the credential.",
+        "subsubsections": [
+          {
+            "name": "QVI vLEI credential’s digest",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Issue",
+                "action": "credDigestQVI",
+                "disabledByDefault": false,
+                "position": "start"
+              }
+            ]
+          },
+          {
+            "name": "I confirm that the QVI AID has received the QVI vLEI credential.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": true,
+                "action": "confirm-cred-digest-qvi"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Issue LE vLEI Credential",
+        "desc": "Your application and QARs should issue and grant a legal entity (LE) vLEI credential to GIDA. Your application must collect a sufficient number of signatures from QARs for the issuance to be valid.",
+        "subsubsections": [
+          {
+            "name": "Please, provide the grant message’s digest for your credential below.",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Submit",
+                "action": "grantMsgDigestLE",
+                "disabledByDefault": false,
+                "position": "end"
+              }
+            ]
+          },
+          {
+            "name": "LE vLEI credential’s digest",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Admit",
+                "disabledByDefault": true,
+                "action": "credDigestLE",
+                "position": "start"
+              }
+            ]
+          },
+          {
+            "name": "After the issuance of LE vLEI credential is successful, you must report the credential to the vLEI reporting API. The process can be completed by resolving and granting the credential to the following OOBI.",
+            "completed": null
+          },
+          {
+            "name": "vLEI Reporting API’s OOBI",
+            "completed": null,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            }
+          },
+          {
+            "name": "Check if the vLEI reporting API has received the LE vLEI credential below.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Check",
+                "disabledByDefault": true,
+                "action": "oobiVLEIReporting"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Issue OOR vLEI Credential",
+        "desc": "To issue an official organization role (OOR) vLEI credential, GIDA first issues and grant an OOR authorization (AUTH) vLEI credential for the internal GAR 1 to the QVI AID.",
+        "subsubsections": [
+          {
+            "name": "OOR AUTH vLEI credential’s digest",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Issue",
+                "disabledByDefault": false,
+                "action": "credDigestOORAUTH",
+                "position": "start"
+              }
+            ]
+          },
+          {
+            "name": "I confirm that the QVI AID has received the OOR AUTH vLEI credential.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": true,
+                "action": "confirm-cred-digest-oor-auth"
+              }
+            ]
+          },
+          {
+            "name": "After the OOR Auth vLEI credential has been received by the QVI AID, you may issue and grant an OOR vLEI credential to the internal GAR 1. Please, provide the grant message’s digest for your credential below.",
+            "completed": null
+          },
+          {
+            "name": "",
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Submit",
+                "disabledByDefault": true,
+                "action": "grantMsgDigestOOR"
+              }
+            ]
+          },
+          {
+            "name": "OOR vLEI credential’s digest",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Admit",
+                "disabledByDefault": true,
+                "action": "credDigestOOR",
+                "position": "start"
+              }
+            ]
+          },
+          {
+            "name": "After the issuance of OOR vLEI credential is successful, you must report the credential to the vLEI reporting API.",
+            "completed": null
+          },
+          {
+            "name": "Check if the vLEI reporting API has received the OOR vLEI credential below.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Check",
+                "disabledByDefault": true,
+                "action": "check-cred-digest-oor"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Issue ECR vLEI Credential",
+        "desc": "To issue an engagement context role (ECR) vLEI credential, GIDA first issues and grant an ECR AUTH vLEI credential for the internal GAR 2 to the QVI AID.",
+        "subsubsections": [
+          {
+            "name": "ECR AUTH vLEI credential’s digest",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Issue",
+                "disabledByDefault": false,
+                "action": "credDigestECRAUTH",
+                "position": "start"
+              }
+            ]
+          },
+          {
+            "name": "I confirm that the QVI AID has received the ECR AUTH vLEI credential.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": true,
+                "action": "confirm-cred-digest-ecr-auth"
+              }
+            ]
+          },
+          {
+            "name": "After the ECR Auth vLEI credential has been received by the QVI AID, you may issue and grant an ECR vLEI credential to the internal GAR 2. Please, provide the grant message’s digest for your credential below.",
+            "completed": null
+          },
+          {
+            "name": "",
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            },
+            "button": [
+              {
+                "text": "Submit",
+                "disabledByDefault": true,
+                "action": "grantMsgDigestECR"
+              }
+            ]
+          },
+          {
+            "name": "ECR vLEI credential’s digest",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Admit",
+                "disabledByDefault": true,
+                "action": "credDigestECR",
+                "position": "start"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Rotation": {
+    "name": "Rotation",
+    "subsections": [
+      {
+        "name": "Rotate the QVI AID",
+        "desc": "Your application should perform key rotation on the QVI AID, collecting a sufficient number of signatures from the QARs’ AIDs. Once the rotation is performed, please put the digest of the delegated rotation key event “drt” and its sequence number below. The GEDA will then Approvethe rotation.",
+        "button": [
+          {
+            "text": "Approve",
+            "disabledByDefault": false,
+            "action": "approve-rotate-qvi-aid",
+            "position": "bottom"
+          }
+        ],
+        "subsubsections": [
+          {
+            "name": "Rotation event’s digest",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            }
+          },
+          {
+            "name": "Rotation event’s sequence number",
+            "completed": false,
+            "input": {
+              "value": "",
+              "disabledByDefault": false
+            }
+          }
+        ]
+      },
+      {
+        "name": "Confirm GEDA’s Key",
+        "subsubsections": [
+          {
+            "name": "After the GEDA has approved the delegated rotation event, you shoud confirm that the GEDA’s key event has been updated with an interaction event anchoring the QVI AID (“i”), the delegated rotation event (“d”), and its sequence number (“s”).",
+            "completed": null
+          },
+          {
+            "name": "I confirm that the QVI AID’s rotation has been approved by the GEDA.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": false,
+                "action": "confirm-rotate-qvi-aid"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Revocation": {
+    "name": "Revocation",
+    "subsections": [
+      {
+        "name": "Revoke the Issued ECR vLEI Credential",
+        "desc": "To revoke the ECR vLEI credential that has been issued in the previous section. First, the GIDA revokes the ECR AUTH vLEI credential.",
+        "subsubsections": [
+          {
+            "name": "Key event’s digest of the revocation",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Revoke",
+                "action": "revocationDigestECR",
+                "disabledByDefault": false,
+                "position": "start"
+              }
+            ]
+          },
+          {
+            "name": "You should confirm that the GIDA has revoked the ECR AUTH vLEI credential by fetching an update from the GIDA’s KEL.",
+            "completed": null
+          },
+          {
+            "name": "I confirm that the ECR AUTH vLEI credential has been revoked by the GIDA.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": true,
+                "action": "confirm-revoke-digest-ecr"
+              }
+            ]
+          },
+          {
+            "name": "You application may revoke the ECR vLEI credential where a sufficient number of signatures from your QARs must be collected to generate valid revocation.",
+            "completed": null
+          },
+          {
+            "name": "Check if the revocation can be observed by GLEIF.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Check",
+                "disabledByDefault": true,
+                "action": "check-revoke-digest-ecr"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Revoke the Issued OOR vLEI Credential",
+        "desc": "To revoke the OOR vLEI credential that has been issued in the previous section. First, the GIDA revokes the OOR AUTH vLEI credential.",
+        "subsubsections": [
+          {
+            "name": "Revocation event’s digest",
+            "completed": false,
+            "input": {
+              "value": null,
+              "disabledByDefault": true
+            },
+            "button": [
+              {
+                "text": "Revoke",
+                "action": "revocationDigestOOR",
+                "disabledByDefault": false,
+                "position": "start"
+              }
+            ]
+          },
+          {
+            "name": "You should confirm that the GIDA has revoked the OOR AUTH vLEI credential by fetching an update from the GIDA’s KEL.",
+            "completed": null
+          },
+          {
+            "name": "I confirm that the OOR AUTH vLEI credential has been revoked by the GIDA.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Confirm",
+                "disabledByDefault": true,
+                "action": "confirm-revoke-digest-oor"
+              }
+            ]
+          },
+          {
+            "name": "You application may revoke the OOR vLEI credential where a sufficient number of signatures from your QARs must be collected to generate valid revocation. After the revocation, you must report the revocation to the vLEI reporting API.",
+            "completed": null
+          },
+          {
+            "name": "Check if the vLEI reporting API has received the revocation of the OOR vLEI credential below.",
+            "completed": false,
+            "button": [
+              {
+                "text": "Check",
+                "disabledByDefault": true,
+                "action": "check-revoke-digest-oor"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Revoke the Issued LE vLEI Credential",
+        "desc": "After the revocation of the OOR and ECR vLEI credentials, you may revoke the LE vLEI credential where a sufficient number of signatures from your QARs must be collected to generate valid revocation. After the revocation, you must report the revocation to the vLEI reporting API.",
+        "subsubsections": [
+          {
+            "name": "Check if the vLEI reporting API has received the revocation of the LE vLEI credential below.",
+            "completed":false,
+            "button":[{
+              "text":"Check",
+              "disabledByDefault":false,
+              "action":"check-revoke-doc"
+            }
+
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
