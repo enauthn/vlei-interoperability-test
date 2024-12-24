@@ -28,8 +28,7 @@ function getAIDfromOOBI(oobi: string) {
 //             }
 
 //             console.log(`stdout: ${stdout}`);
-//             console.error(`stderr: ${stderr}`);
-
+// 
 //             // Parse environment variables from the output
 //             const envVars = stdout.split("\n").reduce((env: any, line: string) => {
 //                 const [key, value] = line.split("=");
@@ -60,7 +59,6 @@ export function initializeAIDs() {
             }
 
             console.log(`stdout: ${stdout}`);
-            console.error(`stderr: ${stderr}`);
 
 
             // Extracting all "Prefix" values using regex
@@ -90,7 +88,6 @@ export function generateOOBI() {
             }
 
             console.log(`stdout: ${stdout}`);
-            console.error(`stderr: ${stderr}`);
 
             // Extracting name and OOBI URL pairs using regex
             const oobiData: OOBI[] = [];
@@ -123,7 +120,6 @@ export async function resolveQARs(qar1Oobi: string, qar2Oobi: string, qar3Oobi: 
             }
 
             console.log(`stdout: ${stdout}`);
-            console.error(`stderr: ${stderr}`);
             const oobiMatches = stdout.match(/http:\/\/\d+\.\d+\.\d+\.\d+:\d+\/oobi\/[\w-]+\/witness resolved/g);
             const oobiData = oobiMatches ? oobiMatches.map((match: string) => match) : [];
 
@@ -143,15 +139,8 @@ export function generateWords() {
             }
 
             console.log(`stdout: ${stdout}`);
-            console.error(`stderr: ${stderr}`);
-            // from stdout: "stdout: Challenging cha1 with pass mystery pyramid drift find case hamster organ mansion service net rookie"
-            // to words : "pass mystery pyramid drift find case hamster organ mansion service net rookie"
-            // const words = stdout.replace('stdout: Challenging cha1 with ', '').trim();
-            // Challenging cha1 with
-            // remove /n
+
             const words = stdout.replace('\n', '')
-            // const wordMatches = stdout.match(/Word:\s(\w+)/g);
-            // const words = wordMatches ? wordMatches.map((match: string) => match.replace('Word: ', '').trim()) : [];
             setWords(words);
 
             resolve({ words });
@@ -180,7 +169,6 @@ export function verifyWords(subsubsection: string) {
             }
 
             console.log(`stdout: ${stdout}`);
-            console.error(`stderr: ${stderr}`);
 
             resolve({ stdout });
         })
@@ -197,7 +185,7 @@ export function respondWords(subsection: string, resp_words: string) {
         const { challenger, recipient } = challengeResponseMapping[subsection as SubsubsectionKey];
 
 
-        exec(`./src/scripts/kli/establishment/respond.sh "${challenger}" "${challenger}" "${recipient}" "${resp_words}"`, (error: any, stdout: any, stderr: any) => {
+        exec(`./src/scripts/kli/establishment/respond-words.sh "${challenger}" "${challenger}" "${recipient}" "${resp_words}"`, (error: any, stdout: any, stderr: any) => {
             if (error) {
                 console.error(`Error executing kli script: ${error}`);
                 reject(error);
@@ -205,7 +193,6 @@ export function respondWords(subsection: string, resp_words: string) {
             }
 
             console.log(`stdout: ${stdout}`);
-            console.error(`stderr: ${stderr}`);
 
             resolve({ stdout });
         })
