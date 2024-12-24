@@ -24,7 +24,7 @@ get_aid_status() {
     echo "$(kli status --name "$name" --alias "$alias" | sed -n '2p')"
 }
 
-get_aid_status "ex_gar1" "ex_gar1"
-get_aid_status "ex_gar2" "ex_gar2"
-get_aid_status "in_gar1" "in_gar1"
-get_aid_status "in_gar2" "in_gar2"
+get_aid_status "qar1" "qar1"
+get_aid_status "qar2" "qar2"
+get_aid_status "qar3" "qar3"
+

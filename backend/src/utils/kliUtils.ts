@@ -1,10 +1,20 @@
 // src/utils/kliUtils.ts
-
-const { exec } = require('child_process');
+import { exec } from 'child_process';
+import { challengeResponseMapping } from './validateUtils';
+import { setWords, words } from '../store/useStateMachine';
 
 interface OOBI {
     name: string | null;
     url: string | null;
+}
+
+type SubsubsectionKey = keyof typeof challengeResponseMapping;
+
+
+function getAIDfromOOBI(oobi: string) {
+    //input: http://127.0.0.1:5643/oobi/EGDJieT-N-IQAZV0QhOeZ7jS8SnRe_bla2wmsYfYuCgT/witness
+    //output: EGDJieT-N-IQAZV0QhOeZ7jS8SnRe_bla2wmsYfYuCgT
+    return oobi.split('/')[4];
 }
 
 // Function to run setup environment script
@@ -99,9 +109,13 @@ export function generateOOBI() {
     });
 }
 
-export function resolveQARs(qar1Oobi: string, qar2Oobi: string, qar3Oobi: string) {
+export async function resolveQARs(qar1Oobi: string, qar2Oobi: string, qar3Oobi: string) {
+    const qar1_aid = await getAIDfromOOBI(qar1Oobi);
+    const qar2_aid = await getAIDfromOOBI(qar2Oobi);
+    const qar3_aid = await getAIDfromOOBI(qar3Oobi);
+
     return new Promise((resolve, reject) => {
-        exec(`./src/scripts/kli/establishment/resolve-QARs-OOBIs.sh "${qar1Oobi}" "${qar2Oobi}" "${qar3Oobi}"`, (error: any, stdout: any, stderr: any) => {
+        exec(`./src/scripts/kli/establishment/resolve-QARs-OOBIs.sh "${qar1Oobi}" "${qar2Oobi}" "${qar3Oobi}" "${qar1_aid}" "${qar2_aid}" "${qar3_aid}"`, (error: any, stdout: any, stderr: any) => {
             if (error) {
                 console.error(`Error executing kli script: ${error}`);
                 reject(error);
@@ -117,6 +131,86 @@ export function resolveQARs(qar1Oobi: string, qar2Oobi: string, qar3Oobi: string
 
         });
     });
+}
+
+export function generateWords() {
+    return new Promise((resolve, reject) => {
+        exec('./src/scripts/kli/establishment/generate-words.sh', (error: any, stdout: any, stderr: any) => {
+            if (error) {
+                console.error(`Error executing kli script: ${error}`);
+                reject(error);
+                return;
+            }
+
+            console.log(`stdout: ${stdout}`);
+            console.error(`stderr: ${stderr}`);
+            // from stdout: "stdout: Challenging cha1 with pass mystery pyramid drift find case hamster organ mansion service net rookie"
+            // to words : "pass mystery pyramid drift find case hamster organ mansion service net rookie"
+            // const words = stdout.replace('stdout: Challenging cha1 with ', '').trim();
+            // Challenging cha1 with
+            // remove /n
+            const words = stdout.replace('\n', '')
+            // const wordMatches = stdout.match(/Word:\s(\w+)/g);
+            // const words = wordMatches ? wordMatches.map((match: string) => match.replace('Word: ', '').trim()) : [];
+            setWords(words);
+
+            resolve({ words });
+
+        });
+    });
+}
+
+export function verifyWords(subsubsection: string) {
+    return new Promise((resolve, reject) => {
+        // Validate if the subsubsection exists in the mapping
+        if (!(subsubsection in challengeResponseMapping)) {
+            return reject(new Error(`Subsubsection ${subsubsection} not found in challengeResponseMapping.`));
+        }
+        // Check if words are generated
+        if (!words || words === '' || words === 'undefined' || words === 'null' || words === ' ') {
+            return reject(new Error('Words not generated.'));
+        }
+        const { challenger, recipient } = challengeResponseMapping[subsubsection as SubsubsectionKey];
+
+        exec(`./src/scripts/kli/establishment/verify-words.sh "${recipient}" "${recipient}" "${challenger}" "${words}"`, (error: any, stdout: any, stderr: any) => {
+            if (error) {
+                console.error(`Error executing kli script: ${error}`);
+                reject(error);
+                return;
+            }
+
+            console.log(`stdout: ${stdout}`);
+            console.error(`stderr: ${stderr}`);
+
+            resolve({ stdout });
+        })
+    }
+    )
+}
+
+export function respondWords(subsection: string, resp_words: string) {
+    return new Promise((resolve, reject) => {
+        // Validate if the subsubsection exists in the mapping
+        if (!(subsection in challengeResponseMapping)) {
+            return reject(new Error(`Subsubsection ${subsection} not found in challengeResponseMapping.`));
+        }
+        const { challenger, recipient } = challengeResponseMapping[subsection as SubsubsectionKey];
+
+
+        exec(`./src/scripts/kli/establishment/respond.sh "${challenger}" "${challenger}" "${recipient}" "${resp_words}"`, (error: any, stdout: any, stderr: any) => {
+            if (error) {
+                console.error(`Error executing kli script: ${error}`);
+                reject(error);
+                return;
+            }
+
+            console.log(`stdout: ${stdout}`);
+            console.error(`stderr: ${stderr}`);
+
+            resolve({ stdout });
+        })
+    }
+    )
 }
 
 
