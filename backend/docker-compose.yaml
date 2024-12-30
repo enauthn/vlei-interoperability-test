@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+    express-server:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        environment:
+            - NODE_ENV=development
+        volumes:
+            - ./:/usr/src/app:delegated
+        ports:
+            - 3000:3000
+        command: npm start
+    witness-demo:
+        image: weboftrust/keri:1.1.22
+        environment:
+            - PYTHONUNBUFFERED=1
+            - PYTHONIOENCODING=UTF-8
+        entrypoint: kli
+        command:
+            - witness
+            - demo
+        volumes:
+            - ./scripts/keri/cf:/keripy/scripts/keri/cf/main
+        ports:
+            - 5642:5642
+            - 5643:5643
+            - 5644:5644
+            - 5645:5645
+            - 5646:5646
+            - 5647:5647
+        network_mode: host
